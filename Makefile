@@ -58,7 +58,7 @@ all: $(LIBFT) $(NAME)
 	$(NAME) map.ber
 git:
 	git add .
-	git commit -m "----commit at date : $(date)"
+	git commit -m "----commit at date : $(date)-----"
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
 
