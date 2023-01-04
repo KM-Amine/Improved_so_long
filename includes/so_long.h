@@ -6,15 +6,15 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/04 18:35:51 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:36:29 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "X.h"
 # include "../libft/libft.h"
+# include "X.h"
 # include <fcntl.h>
 # include <mlx.h>
 
@@ -35,6 +35,7 @@
 # define A 0
 # define W 13
 # define ESC 53
+
 enum
 {
 	background,

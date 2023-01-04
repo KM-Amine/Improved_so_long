@@ -1,15 +1,13 @@
-NAME = game
+NAME = so_long_bonus
 CC = cc
 AR = ar rcs
 CFLAGS = -Wall -Wextra -Werror -I ./includes 
 RM = rm -rf
 HEADER  = includes/so_long.h
-CLIENT = client
-SERVER = server
-
 
 SRC = $(wildcard srcs/*.c)
 OBJ = $(SRC:srcs/%.c=objs/%.o)
+
 LIBFT = libft/libft.a 
 
 LSRC = ft_atoi.c \
@@ -51,23 +49,28 @@ LSRC = ft_atoi.c \
 	get_next_line.c \
 LOBJ =$(LSRC:%.c=libft/%.o)
 
-######change this shit!!!!!!!!######
+
 all: $(LIBFT) $(NAME)
-	./script.sh
+	./git.sh
 	./$(NAME) map.ber
+#	^
+#	|
+######change this shit!!!!!!!!######
+#	|
+#	Y
 norm:
-	bash ~/nor.sh ./**/*.c ./**/*.h 
+	bash ~/nor.sh ./**/*.c ./**/*.h
+
+
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
-
-$(LIBFT) : $(LOBJ)
-	$(MAKE) -C libft
-
 objs/%.o: srcs/%.c $(HEADER)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
+$(LIBFT) : $(LOBJ)
+	$(MAKE) -C libft
 libft/%.o: libft/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(MAKE) -C libft 
 
 clean:
 	$(RM) $(OBJ)

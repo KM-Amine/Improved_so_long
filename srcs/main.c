@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/17 16:13:25 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:37:22 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	render_frame(all_data *data)
 		map_modifier(data, i);
 		image_modifier(data->img, image_set);
 		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set,
-				data->map);
+		data->map);
 	}
 	i++;
 	return (0);
@@ -37,6 +37,7 @@ int	destroy(void *param)
 	(void)param;
 	exit(0);
 }
+
 int	main(int av, char **ac)
 {
 	map_info	map;
