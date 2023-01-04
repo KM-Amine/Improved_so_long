@@ -66,7 +66,7 @@ $(NAME): $(OBJ)
 objs/%.o: srcs/%.c $(HEADER)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(LIBFT) : $(LOBJ)
+$(LIBFT) :
 	$(MAKE) -C libft
 libft/%.o: libft/%.c
 	$(MAKE) -C libft 
