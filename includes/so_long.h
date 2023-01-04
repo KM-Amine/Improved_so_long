@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/17 16:27:16 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:35:51 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "X.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <mlx.h>
 

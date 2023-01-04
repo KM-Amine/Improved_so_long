@@ -49,20 +49,14 @@ LSRC = ft_atoi.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	get_next_line.c \
-# $(DATE) = $(shell echo "----commit at date : $(date)-----")
 LOBJ =$(LSRC:%.c=libft/%.o)
 
-######change this shit######
+######change this shit!!!!!!!!######
 all: $(LIBFT) $(NAME)
 	./script.sh
 	./$(NAME) map.ber
 norm:
-	bash ~/nor.sh ./**/*.c ./**/*.h > /dev/null
-# ///	fnorm ./**/*.c
-# git:
-# 	git add .
-# 	echo $(DATE)	
-# #git commit -m "----commit at date : system$(date)-----"
+	bash ~/nor.sh ./**/*.c ./**/*.h 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
 
