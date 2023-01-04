@@ -56,8 +56,6 @@ all: $(LIBFT) $(NAME)
 #	|
 ######change this shit!!!!!!!!######
 
-
-
 norm:
 	bash ~/nor.sh ./**/*.c ./**/*.h
 #	^
