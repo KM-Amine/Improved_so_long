@@ -49,7 +49,7 @@ LSRC = ft_atoi.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	get_next_line.c \
-
+$(DATE) = $(shell echo "----commit at date : $(date)-----")
 LOBJ =$(LSRC:%.c=custom_libft/%.o)
 
 ######change this shit######
@@ -58,7 +58,8 @@ all: $(LIBFT) $(NAME)
 	$(NAME) map.ber
 git:
 	git add .
-	git commit -m "----commit at date : $(date)-----"
+	echo $(DATE)	
+#git commit -m "----commit at date : system$(date)-----"
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
 
