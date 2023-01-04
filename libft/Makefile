@@ -6,7 +6,7 @@
 #    By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:56:00 by  mkhellou         #+#    #+#              #
-#    Updated: 2023/01/01 17:42:43 by mkhellou         ###   ########.fr        #
+#    Updated: 2023/01/04 19:01:18 by mkhellou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ OBJ = $(SRC:.c=.o)
 BOBJ = $(BSRC:.c=.o)
 
 all: $(NAME)
-
+	@echo "----library compiled-----"
 bonus: all $(BOBJ)
 	@$(AR) $(NAME) $(BOBJ)
 

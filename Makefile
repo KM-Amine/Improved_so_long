@@ -51,7 +51,8 @@ OBJ = $(SRC:srcs/%.c=objs/%.o)
 
 all: $(LIBFT) $(NAME)
 	./git.sh
-	./$(NAME) map.ber
+#./$(NAME) map.ber
+
 #	^
 #	|
 ######change this shit!!!!!!!!######
@@ -69,7 +70,7 @@ objs/%.o: srcs/%.c $(HEADER)
 $(LIBFT) : $(LOBJ)
 	$(MAKE) -C libft
 libft/%.o: libft/%.c
-	$(MAKE) -C libft 
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	$(RM) $(OBJ)
