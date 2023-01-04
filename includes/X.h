@@ -79,8 +79,8 @@ typedef unsigned long KeyCode; /* In order to use IME, the Macintosh needs
 				and ChangeWindowAttributes */
 
 # define CopyFromParent 0L /* border pixmap in CreateWindow \
-					and ChangeWindowAttributes                \
-				special VisualID and special window           \
+					and ChangeWindowAttributes              \
+				special VisualID and special window         \
 					class passed to CreateWindow */
 
 # define PointerWindow 0L /* destination window in SendEvent */
@@ -310,14 +310,14 @@ are reserved in the protocol for errors and replies. */
 # define BadFont 7 /* parameter not a Font */
 # define BadMatch 8 /* parameter mismatch */
 # define BadDrawable 9 /* parameter not a Pixmap or Window */
-# define BadAccess 10 /* depending on context:    \
+# define BadAccess 10 /* depending on context:     \
 			- key/button already grabbed           \
 			- attempt to free an illegal           \
-			cmap entry                           \
-			- attempt to store into a read-only     \
-			color map entry.                     \
-			- attempt to modify the access control  \
-			list from other than the local host. \
+			cmap entry                             \
+			- attempt to store into a read-only    \
+			color map entry.                       \
+			- attempt to modify the access control \
+			list from other than the local host.   \
 			*/
 # define BadAlloc 11 /* insufficient resources */
 # define BadColor 12 /* no such colormap */
