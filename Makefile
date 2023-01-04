@@ -50,20 +50,23 @@ OBJ = $(SRC:srcs/%.c=objs/%.o)
 
 
 all: $(LIBFT) $(NAME)
-	./git.sh > /dev/null
-#./$(NAME) map.ber
-
+	./git.sh
+	./$(NAME) map.ber
 #	^
 #	|
 ######change this shit!!!!!!!!######
-#	|
-#	Y
+
+
+
 norm:
 	bash ~/nor.sh ./**/*.c ./**/*.h
-
+#	^
+#	|
+######change this shit!!!!!!!!######
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
+	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
 objs/%.o: srcs/%.c $(HEADER)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
