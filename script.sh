@@ -5,4 +5,4 @@ bash ~/nor.sh ./**/.c ./**/.h
 echo $COMMIT
 fnorm ./**/*.c
 git add .
-git commit -m "$COMMIT"
+git commit -m "$COMMIT" > /dev/null
