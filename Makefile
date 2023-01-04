@@ -50,7 +50,7 @@ OBJ = $(SRC:srcs/%.c=objs/%.o)
 
 
 all: $(LIBFT) $(NAME)
-	./git.sh
+	./git.sh > /dev/null
 #./$(NAME) map.ber
 
 #	^
