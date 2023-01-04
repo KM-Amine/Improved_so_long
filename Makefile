@@ -56,6 +56,8 @@ LOBJ =$(LSRC:%.c=libft/%.o)
 all: $(LIBFT) $(NAME)
 	./script.sh
 	./$(NAME) map.ber
+norm:
+	bash ~/nor.sh ./**/*.c ./**/*.h > /dev/null
 # ///	fnorm ./**/*.c
 # git:
 # 	git add .
