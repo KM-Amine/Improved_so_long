@@ -49,17 +49,18 @@ LSRC = ft_atoi.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	get_next_line.c \
-$(DATE) = $(shell echo "----commit at date : $(date)-----")
-LOBJ =$(LSRC:%.c=custom_libft/%.o)
+# $(DATE) = $(shell echo "----commit at date : $(date)-----")
+LOBJ =$(LSRC:%.c=libft/%.o)
 
 ######change this shit######
 all: $(LIBFT) $(NAME)
-	fnorm ./**/*.c
-	$(NAME) map.ber
-git:
-	git add .
-	echo $(DATE)	
-#git commit -m "----commit at date : system$(date)-----"
+	./script.sh
+	./$(NAME) map.ber
+# ///	fnorm ./**/*.c
+# git:
+# 	git add .
+# 	echo $(DATE)	
+# #git commit -m "----commit at date : system$(date)-----"
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
 
@@ -74,7 +75,7 @@ libft/%.o: libft/%.c
 
 clean:
 	$(RM) $(OBJ)
-	$(MAKE) fclean -C custom_libft
+	$(MAKE) fclean -C libft
 fclean: clean
 	$(RM) $(CLIENT) $(SERVER) $(NAME)
 re: fclean all

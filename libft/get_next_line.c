@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:03:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/01 17:43:39 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:27:40 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_substr(char *s, size_t start, size_t len)
 }
 
 //free in the end of strjoin
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_2(char *s1, char *s2)
 {
 	int		len;
 	char	*result;
@@ -69,7 +69,7 @@ char	*ft_read_line(char *tmp, int fd)
 			free(buff);
 			return (NULL);
 		}
-		tmp = ft_strjoin(tmp, buff);
+		tmp = ft_strjoin_2(tmp, buff);
 		if (tmp == NULL)
 		{
 			free(buff);

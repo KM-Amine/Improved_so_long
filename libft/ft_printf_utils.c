@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:52:54 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/11/15 13:25:16 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:28:11 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen_2(char *str)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void	ft_putstr(char *str, int *len)
 	if (str == NULL)
 		*len += write(1, "(null)", 6);
 	else
-		*len += write(1, str, ft_strlen(str));
+		*len += write(1, str, ft_strlen_2(str));
 }
 
 void	ft_putnbr(int n, int *len)

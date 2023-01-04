@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:52:48 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/11/09 18:36:01 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:27:56 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		ft_printf(const char *str, ...);
 
-int		ft_strlen(char *str);
+int		ft_strlen_2(char *str);
 void	ft_putchar(char c, int *len);
 void	ft_putstr(char *str, int *len);
 void	ft_putnbr(int i, int *len);
