@@ -5,11 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -I ./includes
 RM = rm -rf
 HEADER  = includes/so_long.h
 
-SRC = $(wildcard srcs/*.c)
-OBJ = $(SRC:srcs/%.c=objs/%.o)
-
 LIBFT = libft/libft.a 
-
 LSRC = ft_atoi.c \
 	ft_bzero.c \
 	ft_calloc.c \
@@ -48,6 +44,9 @@ LSRC = ft_atoi.c \
 	ft_printf_utils.c \
 	get_next_line.c \
 LOBJ =$(LSRC:%.c=libft/%.o)
+
+SRC = $(wildcard srcs/*.c)
+OBJ = $(SRC:srcs/%.c=objs/%.o)
 
 
 all: $(LIBFT) $(NAME)
