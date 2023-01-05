@@ -26,7 +26,7 @@ int	render_frame(all_data *data)
 		map_modifier(data, i);
 		image_modifier(data->img, image_set);
 		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set,
-		data->map);
+				data->map);
 	}
 	i++;
 	return (0);

@@ -1,11 +1,12 @@
 NAME = so_long_bonus
 CC = cc
 AR = ar rcs
-LFLAGS = -Wall -Wextra -Werror
 CFLAGS = -Wall -Wextra -Werror -I ./includes 
 RM = rm -rf
 HEADER  = includes/so_long.h
 
+
+LFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a 
 LSRC = ft_atoi.c \
 	ft_bzero.c \
@@ -45,27 +46,28 @@ LSRC = ft_atoi.c \
 	ft_printf_utils.c \
 	get_next_line.c \
 	get_next_line_utils.c
-
 LOBJ = $(LSRC:%.c=libft/%.o)
-
 
 SRC = $(wildcard srcs/*.c)
 OBJ = $(SRC:srcs/%.c=objs/%.o)
 OBJDIR = objs
 
 all:  $(NAME)
-# ./git.sh
-# ./$(NAME) map.ber
+	./$(NAME) map.ber
 #	^
 #	|
 ######change this shit!!!!!!!!######
-
+fgit :
+	./git.sh
+#	^
+#	|
+######change this shit!!!!!!!!######
 norm:
 	bash ~/nor.sh ./**/*.c ./**/*.h
-#	^
-#	|
+#^
+#|
 ######change this shit!!!!!!!!######
-#OBJ dir
+
 
 
 $(NAME): $(LIBFT) $(OBJ)
