@@ -56,17 +56,17 @@ all:  $(NAME)
 	./$(NAME) map.ber
 #	^
 #	|
-######change this shit!!!!!!!!######
+######	Delete this shit!!!!!!!!######
 fgit :
 	./git.sh
 #	^
 #	|
-######change this shit!!!!!!!!######
+######	Delete this shit!!!!!!!!######
 norm:
 	bash ~/nor.sh ./**/*.c ./**/*.h
 #^
 #|
-######change this shit!!!!!!!!######
+######	Delete this shit!!!!!!!!######
 
 
 
