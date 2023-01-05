@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/17 18:38:49 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:37:34 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	key_press(int keycode, all_data *data)
 	if (keycode == ESC)
 	{
 		data->keys[4].status[0] = 1;
+		exit_free(NULL);
 	}
-	ft_printf("%d %d\n", data->keys[0].status[0], data->keys[0].status[1]);
 	return (0);
 }
 

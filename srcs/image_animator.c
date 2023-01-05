@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/17 13:14:54 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:40:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	images_generator(image_info *img, void *mlx)
 		while (j < 10)
 		{
 			path = path_generator(i, j);
-			ft_printf("%s\n", path);
+			//ft_printf("%s\n", path);
 			img[j].ptr[i] = mlx_xpm_file_to_image(mlx, path,
 					&img[5].resolution.x, &img[5].resolution.y);
 			free(path);

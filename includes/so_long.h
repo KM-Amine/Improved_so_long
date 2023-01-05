@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 13:23:23 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:57:32 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ enum
 	up,
 	down,
 	left
+};
+
+enum
+{
+	DOWNLEFT,
+	DOWNRIGHT,
+	UPLEFT,
+	UPRIGHT
 };
 
 enum
@@ -162,5 +170,9 @@ void			enemy_modifier(all_data *data, int clock, int frame_rate);
 
 void			enemy_collector(all_data *data);
 void			enemy_direction(char **map, all_data *data);
+
+int		key_press(int keycode, all_data *data);
+void	image_modifier(image_info *img, void **image_set);
+int exit_free(void *param);
 
 #endif

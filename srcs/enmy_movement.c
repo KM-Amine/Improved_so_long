@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/17 19:19:05 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:00:54 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	enemy_spawner(char **map)
 	int	i;
 	int	j;
 
-	//int count;
 	i = 0;
 	while (map[i])
 	{
@@ -50,7 +49,6 @@ void	enemy_collector(all_data *data)
 				data->enemy[count].p.x = j;
 				data->enemy[count].p.y = i;
 				count++;
-				ft_printf("%d", count);
 			}
 			j++;
 		}
@@ -67,31 +65,31 @@ void	enemy_direction(char **map, all_data *data)
 	en = data->enemy;
 	if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x]))
 	{
-		if (en[count].direction == 2)
-			en[count].direction = 1;
-		else if (en[count].direction == 3)
-			en[count].direction = 0;
+		if (en[count].direction == UPLEFT)
+			en[count].direction = DOWNRIGHT;
+		else if (en[count].direction == UPRIGHT)
+			en[count].direction = DOWNLEFT;
 	}
 	if (ft_strchr("1EGTC", map[en[count].p.y][en[count].p.x + 1]))
 	{
-		if (en[count].direction == 3)
-			en[count].direction = 2;
-		else if (en[count].direction == 0)
-			en[count].direction = 1;
+		if (en[count].direction == UPRIGHT)
+			en[count].direction = UPLEFT;
+		else if (en[count].direction == DOWNLEFT)
+			en[count].direction = DOWNRIGHT;
 	}
 	if (ft_strchr("1EGTC", map[en[count].p.y + 1][en[count].p.x]))
 	{
-		if (en[count].direction == 0)
-			en[count].direction = 3;
-		else if (en[count].direction == 1)
-			en[count].direction = 2;
+		if (en[count].direction == DOWNLEFT)
+			en[count].direction = UPRIGHT;
+		else if (en[count].direction == DOWNRIGHT)
+			en[count].direction = UPLEFT;
 	}
 	if (ft_strchr("1EGTC", map[en[count].p.y][en[count].p.x - 1]))
 	{
-		if (en[count].direction == 1)
-			en[count].direction = 0;
-		else if (en[count].direction == 2)
-			en[count].direction = 3;
+		if (en[count].direction == DOWNRIGHT)
+			en[count].direction = DOWNLEFT;
+		else if (en[count].direction == UPLEFT)
+			en[count].direction = UPRIGHT;
 	}
 }
 
@@ -99,11 +97,11 @@ void	enemy_mouver(char **map, pos *p, int x, int y)
 {
 	static int	i;
 
-	ft_printf("%c", map[p->y + x][p->x + x]);
+	//ft_printf("%c", map[p->y + x][p->x + x]);
 	if (ft_strchr("1EGT", map[p->y + y][p->x + x]) == NULL)
 	{
 		i++;
-		ft_printf("enemy : %d times %d %d \n", i, p->x, p->y);
+		//ft_printf("enemy : %d times %d %d \n", i, p->x, p->y);
 		map[p->y][p->x] = '0';
 		map[p->y + y][p->x + x] = 'T';
 		p->y = p->y + y;
@@ -118,15 +116,15 @@ void	enemy_modifier(all_data *data, int clock, int frame_rate)
 	count = 0;
 	if (clock % frame_rate == 0)
 	{
-		if (data->enemy[count].direction == 0)
+		if (data->enemy[count].direction == DOWNLEFT)
 			enemy_mouver(data->map.map, &data->enemy[count].p, 1, 1);
-		else if (data->enemy[count].direction == 1)
+		else if (data->enemy[count].direction == DOWNRIGHT)
 		{
 			enemy_mouver(data->map.map, &data->enemy[count].p, -1, 1);
 		}
-		else if (data->enemy[count].direction == 2)
+		else if (data->enemy[count].direction == UPLEFT)
 			enemy_mouver(data->map.map, &data->enemy[count].p, -1, -1);
-		else if (data->enemy[0].direction == 3)
+		else if (data->enemy[0].direction == UPRIGHT)
 			enemy_mouver(data->map.map, &data->enemy[count].p, 1, -1);
 	}
 }
