@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/04 18:37:22 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:20:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,23 @@ int	destroy(void *param)
 
 int	main(int av, char **ac)
 {
-	map_info	map;
-	mlx_info	mlx;
-	image_info	*img;
 	all_data	data;
+	mlx_info	mlx;
 	key			*keys;
 	enemy		*enemi;
 
 	keys = ft_calloc(5, sizeof(key));
 	enemi = ft_calloc(20, sizeof(enemy));
-	map = map_checker(av, ac);
-	enemy_spawner(map.map);
+	data.map = map_checker(av, ac);
+	enemy_spawner(data.map.map);
 	mlx.mlx = mlx_init();
-	mlx.mlx_win = mlx_new_window(mlx.mlx, map.resolution.x * SPRITE_X,
-			(map.resolution.y + 1) * SPRITE_Y, "so_long");
-	img = (image_info *)ft_calloc(10, sizeof(image_info));
-	images_generator(img, mlx.mlx);
-	data.map = map;
+	mlx.mlx_win = mlx_new_window(mlx.mlx, data.map.resolution.x * SPRITE_X,
+			(data.map.resolution.y + 1) * SPRITE_Y, "so_long");
+	data.img = (image_info *)ft_calloc(10, sizeof(image_info));
+	images_generator(data.img, mlx.mlx);
+	//data.map = map;
 	data.mlx = mlx;
-	data.img = img;
+	//data.img = img;
 	data.keys = keys;
 	data.enemy = enemi;
 	enemy_collector(&data);
@@ -68,8 +66,8 @@ int	main(int av, char **ac)
 	mlx_hook(mlx.mlx_win, DestroyNotify, NoEventMask, destroy, NULL);
 	mlx_loop_hook(mlx.mlx, render_frame, &data);
 	mlx_loop(mlx.mlx);
-	free_map(map.map);
-	images_destroyer(img, mlx.mlx);
+	free_map(data.map.map);
+	images_destroyer(data.img, mlx.mlx);
 	mlx_destroy_window(mlx.mlx, mlx.mlx);
 	free(data.mlx.mlx);
 	return (0);

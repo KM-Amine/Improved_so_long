@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/04 18:36:29 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:23:23 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ enum
 	go,
 	patrol
 };
+
 enum
 {
 	right,
@@ -53,11 +54,25 @@ enum
 	down,
 	left
 };
+
 enum
 {
 	press,
 	release
 };
+
+typedef struct pos
+{
+	int			x;
+	int			y;
+}				pos;
+
+typedef struct map_info
+{
+	char		**map;
+	pos			resolution;
+}				map_info;
+
 
 typedef struct map_check
 {
@@ -76,17 +91,13 @@ typedef struct char_cont
 	int			p;
 }				char_cont;
 
-typedef struct pos
+typedef struct mlx_info
 {
-	int			x;
-	int			y;
-}				pos;
+	void		*mlx;
+	void		*mlx_win;
+}				mlx_info;
 
-typedef struct map_info
-{
-	char		**map;
-	pos			resolution;
-}				map_info;
+
 
 typedef struct image_info
 {
@@ -94,11 +105,6 @@ typedef struct image_info
 	pos			resolution;
 }				image_info;
 
-typedef struct mlx_info
-{
-	void		*mlx;
-	void		*mlx_win;
-}				mlx_info;
 
 typedef struct key
 {
