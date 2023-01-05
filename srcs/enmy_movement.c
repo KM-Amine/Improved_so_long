@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 17:26:43 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:45:34 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	enemy_spawner(char **map)
 		}
 		i++;
 	}
+}
+// work on this shit 
+void	enemy_respawner()
+{
+	
 }
 
 void	enemy_collector(all_data *data)
@@ -56,12 +61,25 @@ void	enemy_collector(all_data *data)
 	}
 }
 
+void	enemy_mouver(char **map, pos *p, int x, int y)
+{
+	if (ft_strchr("1EGT", map[p->y + y][p->x + x]) == NULL)
+	{
+		map[p->y][p->x] = '0';
+		map[p->y + y][p->x + x] = 'T';
+		p->y = p->y + y;
+		p->x = p->x + x;
+	}
+}
+
 void	enemy_direction(char **map, all_data *data)
 {
 	enemy	*en;
 	int		count;
 	enemy zero;
-
+	int check;
+	
+	check =0;
 	ft_bzero(&zero,sizeof(enemy));
 	count = 0;
 	en = data->enemy;
@@ -97,36 +115,25 @@ void	enemy_direction(char **map, all_data *data)
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x + 1]))
 		{
-			en[count].direction = DOWNLEFT;
+			enemy_mouver(data->map.map,&en[count].p,0,1);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y + 1][en[count].p.x + 1]))
 		{
-			en[count].direction = UPLEFT;
+			enemy_mouver(data->map.map,&en[count].p,0,1);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x - 1]))
 		{
-			en[count].direction = DOWNRIGHT;
+			enemy_mouver(data->map.map,&en[count].p,0,1);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y + 1][en[count].p.x - 1]))
 		{
-			en[count].direction = UPRIGHT;
+			enemy_mouver(data->map.map,&en[count].p,0,1);
 		}
 		count ++;
 	}
 }
 
-void	enemy_mouver(char **map, pos *p, int x, int y)
-{
-	if (ft_strchr("1EGT", map[p->y + y][p->x + x]) == NULL)
-	{
-		print_map(map);
-		map[p->y][p->x] = '0';
-		map[p->y + y][p->x + x] = 'T';
-		p->y = p->y + y;
-		p->x = p->x + x;
-		print_map(map);
-	}
-}
+
 
 void	enemy_modifier(all_data *data, int clock, int frame_rate)
 {
