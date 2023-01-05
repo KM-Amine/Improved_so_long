@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 15:57:32 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:22:56 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ enum
 
 enum
 {
-	DOWNLEFT,
 	DOWNRIGHT,
+	DOWNLEFT,
 	UPLEFT,
 	UPRIGHT
 };

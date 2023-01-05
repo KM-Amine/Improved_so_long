@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 15:37:34 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:30:03 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	player_modifier(all_data *data, int clock, int frame_rate)
 void	map_modifier(all_data *data, int clock)
 {
 	enemy_direction(data->map.map, data);
-	enemy_modifier(data, clock, 1);
+	enemy_modifier(data, clock, 10);
 	player_modifier(data, clock, 2);
 	finish_game(data);
 }
