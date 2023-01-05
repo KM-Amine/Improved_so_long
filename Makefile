@@ -1,6 +1,7 @@
 NAME = so_long_bonus
 CC = cc
 AR = ar rcs
+LFLAGS = -Wall -Wextra -Werror
 CFLAGS = -Wall -Wextra -Werror -I ./includes 
 RM = rm -rf
 HEADER  = includes/so_long.h
@@ -43,15 +44,18 @@ LSRC = ft_atoi.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	get_next_line.c \
-LOBJ =$(LSRC:%.c=libft/%.o)
+	get_next_line_utils.c
+
+LOBJ = $(LSRC:%.c=libft/%.o)
+
 
 SRC = $(wildcard srcs/*.c)
 OBJ = $(SRC:srcs/%.c=objs/%.o)
+OBJDIR = objs
 
-
-all: $(LIBFT) $(NAME)
-	./git.sh
-	./$(NAME) map.ber
+all:  $(NAME)
+# ./git.sh
+# ./$(NAME) map.ber
 #	^
 #	|
 ######change this shit!!!!!!!!######
@@ -61,23 +65,27 @@ norm:
 #	^
 #	|
 ######change this shit!!!!!!!!######
+#OBJ dir
 
-$(NAME): $(OBJ)
+
+$(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 objs/%.o: srcs/%.c $(HEADER)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(LIBFT) : $(LOBJ)
-	$(MAKE) -C libft
+	@$(MAKE) -C libft
 libft/%.o: libft/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(LFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
-	$(MAKE) fclean -C libft
+	@$(RM) $(OBJDIR)
+	@$(MAKE) fclean -C libft
 fclean: clean
-	$(RM) $(CLIENT) $(SERVER) $(NAME)
+	@$(RM) $(CLIENT) $(SERVER) $(NAME)
+	@echo "\033[1;32m ----Project cleaned----- \033[0m"
 re: fclean all
 
 .PHONY: all clean fclean re bonus

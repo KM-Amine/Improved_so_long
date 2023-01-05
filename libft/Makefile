@@ -6,12 +6,12 @@
 #    By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:56:00 by  mkhellou         #+#    #+#              #
-#    Updated: 2023/01/04 19:01:18 by mkhellou         ###   ########.fr        #
+#    Updated: 2023/01/05 11:24:40 by mkhellou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = cc
 AR = ar rcs
 CFLAGS = -Wall -Wextra -Werror -I .
 RM = rm -rf
@@ -72,12 +72,13 @@ OBJ = $(SRC:.c=.o)
 BOBJ = $(BSRC:.c=.o)
 
 all: $(NAME)
-	@echo "----library compiled-----"
+
 bonus: all $(BOBJ)
 	@$(AR) $(NAME) $(BOBJ)
 
 $(NAME):$(OBJ)
 	@$(AR) $@ $^
+	@echo "\033[1;32m ----library compiled----- \033[0m"
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< 
@@ -86,6 +87,7 @@ clean:
 	@$(RM) $(OBJ) $(BOBJ)
 fclean: clean
 	@$(RM) $(NAME)
+	@echo "\033[1;32m ----library cleaned----- \033[0m"
 re: fclean all
 
 .PHONY: all clean fclean re bonus
