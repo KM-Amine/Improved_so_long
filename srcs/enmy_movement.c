@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 16:09:33 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:20:06 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,29 @@ void	enemy_spawner(map_info *map)
 
 	i = 0;
 	count = 0;
-	while (count<elment_counter(map->map,'0'))
+	while (count < map->resolution.y/3)
 	{
 		srand(clock());
 		y = rand()%map->resolution.y;
 		srand(clock());
 		x = rand()%map->resolution.y;
-		if (ft_strchr("0", map->map[y][x]) && i % 3 == 0)
+		if (ft_strchr("0", map->map[y][x]))
 		{
 			map->map[y][x] = 'T';
 			count++;
 		}
 		i++;
 	}
-//	print_map(map->map);
 }
 
 // work on this shit 
 void	enemy_respawner(map_info *map,enemy *enemy)
 {
-	int	i;
 	int x;
 	int y;
 	int count;
-	i = 0;
-//	print_map(map->map);
+
 	map->map[enemy->p.y][enemy->p.x]='0';
-//	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
 	count = 0;
 	while (count<1)
 	{
@@ -63,7 +59,6 @@ void	enemy_respawner(map_info *map,enemy *enemy)
 			enemy->p.x = x;
 			return;
 		}
-		i++;
 	}
 }
 

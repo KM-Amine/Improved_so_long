@@ -28,7 +28,7 @@ int	render_frame(all_data *data)
 	return (0);
 }
 
-int exit_free(void *param)
+int	exit_free(void *param)
 {
 	(void)param;
 	ft_printf("-----exit done----\n");
@@ -40,35 +40,27 @@ int	main(int av, char **ac)
 	all_data	data;
 
 	data.keys = ft_calloc(5, sizeof(key));
-	data.enemy  = ft_calloc(20, sizeof(enemy));
+	data.enemy = ft_calloc(20, sizeof(enemy));
 	data.map = map_checker(av, ac);
-
-// enemy
+	// enemy
 	enemy_spawner(&data.map);
 	enemy_collector(&data);
-
-// window initialisation
+	// window initialisation
 	data.mlx.mlx = mlx_init();
-	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x * SPRITE_X,
-			(data.map.resolution.y + 1) * SPRITE_Y, "so_long");
-
-// image creation
+	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x
+			* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
+	// image creation
 	data.img = (image_info *)ft_calloc(10, sizeof(image_info));
 	images_generator(data.img, data.mlx.mlx);
-		
 	// player is on top of coin
-	
-
-// hooking
+	// hooking
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.mlx.mlx_win, KeyRelease, KeyReleaseMask, key_release, &data);
 	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, NULL);
-
-//main system
+	//main system
 	mlx_loop_hook(data.mlx.mlx, render_frame, &data);
 	mlx_loop(data.mlx.mlx);
-
-// exiting
+	// exiting
 	free_map(data.map.map);
 	images_destroyer(data.img, data.mlx.mlx);
 	mlx_destroy_window(data.mlx.mlx, data.mlx.mlx);

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:43:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/10 13:37:33 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:12:10 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	check_cordonates(char **map, pos *cordonates)
 		i = 1;
 		ft_printf("map x  is too large\n");
 	}
-	if (cordonates->y * SPRITE_Y > WINDOW_Y)
+	if ((cordonates->y + 1) * SPRITE_Y > WINDOW_Y)
 	{
 		i = 1;
 		ft_printf("map y  is too large\n");

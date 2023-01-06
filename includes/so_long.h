@@ -82,7 +82,6 @@ typedef struct map_info
 	pos			resolution;
 }				map_info;
 
-
 typedef struct map_check
 {
 	int			rectangular;
@@ -106,14 +105,11 @@ typedef struct mlx_info
 	void		*mlx_win;
 }				mlx_info;
 
-
-
 typedef struct image_info
 {
 	void		*ptr[50];
 	pos			resolution;
 }				image_info;
-
 
 typedef struct key
 {
@@ -172,8 +168,8 @@ void			enemy_modifier(all_data *data, int clock, int frame_rate);
 void			enemy_collector(all_data *data);
 void			enemy_direction(char **map, all_data *data);
 
-int		key_press(int keycode, all_data *data);
-void	image_modifier(image_info *img, void **image_set);
-int exit_free(void *param);
+int				key_press(int keycode, all_data *data);
+void			image_modifier(image_info *img, void **image_set);
+int				exit_free(void *param);
 
 #endif
