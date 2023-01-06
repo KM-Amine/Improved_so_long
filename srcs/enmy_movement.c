@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:20:06 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:33:54 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,51 +99,7 @@ void	enemy_mouver(char **map, pos *p, int x, int y)
 		p->x = p->x + x;
 	}
 }
-int respawn_detector(all_data *data,enemy *enemy)
-{
-	// int x;
-	// int y;
-	// int count;
-	
- 	(void)data;
-	(void)enemy;
-// 	count = 0;
-// 	x = enemy->p.x;
-// 	y = enemy->p.y;
-// //	print_map(data->map.map);
-// 	ft_printf("%d-%d\n",x,y);
-// 	if(ft_strchr("1EGCT",data->map.map[x+1][y+1]))
-//  {
-// 	//	ft_printf("fuck\n");	
-// 		count++;
-// 		ft_printf("\n%d--",count);
-// 	}
-// 	if(ft_strchr("1EGCT",data->map.map[x-1][y+1]))
-// 	{
-// 		//ft_printf("fuck");	
-// 		count++;
-// 		ft_printf("%d--",count);
-// 	}
-// 	if(ft_strchr("1EGCT",data->map.map[x+1][y-1]))
-// 	{
-// 	//	ft_printf("fuck,\n");	
-// 		count++;
-// 		ft_printf("%d--",count);
-// 	}
-// 	if(ft_strchr("1EGCT",data->map.map[x-1][y-1]))
-// 	{
-// 	//	ft_printf("fuck\n");	
-// 		count++;
-// 		ft_printf("%d\n",count);
-// 	}
-// 	if(count > 0)
-// 	{
-// 	//	enemy_respawner(&(data->map),enemy);
-// 	//	print_map(data->map.map);
-// 		return(-1);
-// 	}
-	return(0);
-}
+
 void	enemy_direction(char **map, all_data *data)
 {
 	enemy	*en;
