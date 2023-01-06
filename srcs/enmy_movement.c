@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 13:30:07 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:09:33 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	enemy_spawner(map_info *map)
 
 	i = 0;
 	count = 0;
-	while (count<elment_counter(map,'0'))
+	while (count<elment_counter(map->map,'0'))
 	{
 		srand(clock());
 		y = rand()%map->resolution.y;

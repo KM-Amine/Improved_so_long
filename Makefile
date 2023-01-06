@@ -74,12 +74,12 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 objs/%.o: srcs/%.c $(HEADER)
+	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(LIBFT) : $(LOBJ)
 	@$(MAKE) -C libft
 libft/%.o: libft/%.c
-	@mkdir -p $(OBJDIR)
 	@$(CC) $(LFLAGS) -c $< -o $@
 
 clean:
