@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:58:07 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:30:07 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	enemy_spawner(map_info *map)
 	int	i;
 	int x;
 	int y;
+	int count;
 
 	i = 0;
-	while (map->map[i])
+	count = 0;
+	while (count<elment_counter(map,'0'))
 	{
 		srand(clock());
 		y = rand()%map->resolution.y;
@@ -28,10 +30,11 @@ void	enemy_spawner(map_info *map)
 		if (ft_strchr("0", map->map[y][x]) && i % 3 == 0)
 		{
 			map->map[y][x] = 'T';
+			count++;
 		}
 		i++;
 	}
-	print_map(map->map);
+//	print_map(map->map);
 }
 
 // work on this shit 
@@ -40,21 +43,24 @@ void	enemy_respawner(map_info *map,enemy *enemy)
 	int	i;
 	int x;
 	int y;
-
+	int count;
 	i = 0;
-	print_map(map->map);
+//	print_map(map->map);
 	map->map[enemy->p.y][enemy->p.x]='0';
-	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
-	i = 0;
-	while (map->map[i])
+//	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
+	count = 0;
+	while (count<1)
 	{
 		srand(clock());
 		y = rand()%map->resolution.y;
 		srand(clock());
-		x = rand()%map->resolution.y;
-		if (ft_strchr("0T", map->map[y][x]) && i % 3 == 0)
+		x = rand()%map->resolution.x;
+		if (ft_strchr("0", map->map[y][x]))
 		{
+			count++;
 			map->map[y][x] = 'T';
+			enemy->p.y = y;
+			enemy->p.x = x;
 			return;
 		}
 		i++;
@@ -98,7 +104,51 @@ void	enemy_mouver(char **map, pos *p, int x, int y)
 		p->x = p->x + x;
 	}
 }
-
+int respawn_detector(all_data *data,enemy *enemy)
+{
+	// int x;
+	// int y;
+	// int count;
+	
+ 	(void)data;
+	(void)enemy;
+// 	count = 0;
+// 	x = enemy->p.x;
+// 	y = enemy->p.y;
+// //	print_map(data->map.map);
+// 	ft_printf("%d-%d\n",x,y);
+// 	if(ft_strchr("1EGCT",data->map.map[x+1][y+1]))
+//  {
+// 	//	ft_printf("fuck\n");	
+// 		count++;
+// 		ft_printf("\n%d--",count);
+// 	}
+// 	if(ft_strchr("1EGCT",data->map.map[x-1][y+1]))
+// 	{
+// 		//ft_printf("fuck");	
+// 		count++;
+// 		ft_printf("%d--",count);
+// 	}
+// 	if(ft_strchr("1EGCT",data->map.map[x+1][y-1]))
+// 	{
+// 	//	ft_printf("fuck,\n");	
+// 		count++;
+// 		ft_printf("%d--",count);
+// 	}
+// 	if(ft_strchr("1EGCT",data->map.map[x-1][y-1]))
+// 	{
+// 	//	ft_printf("fuck\n");	
+// 		count++;
+// 		ft_printf("%d\n",count);
+// 	}
+// 	if(count > 0)
+// 	{
+// 	//	enemy_respawner(&(data->map),enemy);
+// 	//	print_map(data->map.map);
+// 		return(-1);
+// 	}
+	return(0);
+}
 void	enemy_direction(char **map, all_data *data)
 {
 	enemy	*en;
@@ -112,29 +162,47 @@ void	enemy_direction(char **map, all_data *data)
 	en = data->enemy;
 	while (ft_memcmp(&en[count],&zero,sizeof(enemy)))
 	{
+		print_map(map);
+		respawn_detector(data,&en[count]);
 		if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x]))
 		{
-		if (en[count].direction == UPLEFT)
-			en[count].direction =  DOWNLEFT ;
-		else if (en[count].direction == UPRIGHT)
-			en[count].direction =  DOWNRIGHT;
+			if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1]) || ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1]))
+			{
+				enemy_respawner(&(data->map),&en[count]);
+			}
+			if (en[count].direction == UPLEFT)
+				en[count].direction =  DOWNLEFT ;
+			else if (en[count].direction == UPRIGHT)
+				en[count].direction =  DOWNRIGHT;
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y][en[count].p.x + 1]))
 		{
+			if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1]) || ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1]))
+			{
+				enemy_respawner(&(data->map),&en[count]);
+			}
 			if (en[count].direction == UPRIGHT)
-			en[count].direction = UPLEFT;
+				en[count].direction = UPLEFT;
 			else if (en[count].direction ==  DOWNRIGHT)
-			en[count].direction =  DOWNLEFT;
+				en[count].direction =  DOWNLEFT;
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x]))
 		{
+			if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1]) || ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]))				
+			{
+				enemy_respawner(&(data->map),&en[count]);
+			}
 			if (en[count].direction ==  DOWNRIGHT)
 				en[count].direction = UPRIGHT;
 			else if (en[count].direction ==  DOWNLEFT)
 				en[count].direction = UPLEFT;
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y][en[count].p.x - 1]))
+		{
+			if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]) || ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1]))
 			{
+				enemy_respawner(&(data->map),&en[count]);
+			}
 			if (en[count].direction ==  DOWNLEFT)
 				en[count].direction =  DOWNRIGHT;
 			else if (en[count].direction == UPLEFT)
@@ -142,19 +210,19 @@ void	enemy_direction(char **map, all_data *data)
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]))
 		{
-			enemy_respawner(map,&en[count]);
+			enemy_respawner(&(data->map),&en[count]);
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1]))
 		{
-			enemy_respawner(map,&en[count]);
+			enemy_respawner(&(data->map),&en[count]);
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1]))
 		{
-			enemy_respawner(map,&en[count]);
+			enemy_respawner(&(data->map),&en[count]);
 		}
 		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1]))
 		{
-			enemy_respawner(map,&en[count]);
+			enemy_respawner(&(data->map),&en[count]);
 		}
 		count ++;
 	}
