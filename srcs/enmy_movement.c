@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 19:45:34 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:15:03 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,41 @@ void	enemy_spawner(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (ft_strchr(map[i] + i, '0') && i % 2 == 0)
+		j = 0;
+		if (ft_strchr(map[i], '0') && i % 2 == 0)
 		{
-			j = ft_strchr(map[i] + i, '0') - map[i] + i;
+			j = ft_strchr(map[i], '0') - map[i];
 			map[i][j] = 'T';
 		}
 		i++;
 	}
 }
+
 // work on this shit 
-void	enemy_respawner()
+void	enemy_respawner(char **map,enemy *enemy)
 {
-	
+	int	i;
+//	int	j;
+	static int s;
+
+	i = 0;
+	print_map(map);
+//	map[enemy->p.y][enemy->p.x]='0';
+	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
+	print_map(map);
+	while (map[i])
+	{
+		if (ft_strchr(map[i]+s%5 , '0') && i % 2 == 0)
+		{
+			// j = ft_strchr(map[i]+s%5 , '0') - map[i]+s%5 ;
+			// map[i+s%5][j+s%5] = 'T';
+			// enemy->p.y = i;
+			// enemy->p.x = j;
+			// s++;
+			return;
+		}
+		i++;
+	}
 }
 
 void	enemy_collector(all_data *data)
@@ -113,21 +136,21 @@ void	enemy_direction(char **map, all_data *data)
 			else if (en[count].direction == UPLEFT)
 					en[count].direction = UPRIGHT;
 		}
-		else if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x + 1]))
+		if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x + 1]))
 		{
-			enemy_mouver(data->map.map,&en[count].p,0,1);
+			enemy_respawner(map,&en[count]);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y + 1][en[count].p.x + 1]))
 		{
-			enemy_mouver(data->map.map,&en[count].p,0,1);
+			enemy_respawner(map,&en[count]);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y - 1][en[count].p.x - 1]))
 		{
-			enemy_mouver(data->map.map,&en[count].p,0,1);
+			enemy_respawner(map,&en[count]);
 		}
 		else if (ft_strchr("1EGTC", map[en[count].p.y + 1][en[count].p.x - 1]))
 		{
-			enemy_mouver(data->map.map,&en[count].p,0,1);
+			enemy_respawner(map,&en[count]);
 		}
 		count ++;
 	}
