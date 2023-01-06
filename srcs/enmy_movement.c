@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:55:41 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:58:07 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,30 @@ void	enemy_spawner(map_info *map)
 }
 
 // work on this shit 
-void	enemy_respawner(char **map,enemy *enemy)
+void	enemy_respawner(map_info *map,enemy *enemy)
 {
 	int	i;
-//	int	j;
-//	static int s;
+	int x;
+	int y;
 
 	i = 0;
-	print_map(map);
-	//map[enemy->p.y][enemy->p.x]='0';
+	print_map(map->map);
+	map->map[enemy->p.y][enemy->p.x]='0';
 	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
-	
-//	print_map(map);
-	// while (1)
-	// {
-	// 	// srand(clock());
-	// 	// i = rand()%map->resolution.y;
-	// 	// srand(clock());
-	// 	// i = rand()%map->resolution.y;
-	// 	// if (ft_strchr("0", map->map[i][j]))
-	// 	// {
-	// 	// 	map->map[i][j] = 'T';
-	// 	// }
-	// 	// j = 0;
-	// 	// if (ft_strchr(map[i], '0') && i % 2 == 0)
-	// 	// {
-	// 	// 	j = ft_strchr(map[i], '0') - map[i];
-	// 	// 	map[i][j] = 'T';
-	// 	// 	enemy->p.y = i;
-	// 	// 	enemy->p.x = j;
-	// 	// 	return;
-	// 	// }
-	// 	// i++;
-	// 	// if (ft_strchr(map[i]+s%5 , '0') && i % 2 == 0)
-	// 	// {
-			
-	// 	// 	// j = ft_strchr(map[i]+s%5 , '0') - map[i]+s%5 ;
-	// 	// 	// map[i+s%5][j+s%5] = 'T';
-	// 	// 	// enemy->p.y = i;
-	// 	// 	// enemy->p.x = j;
-	// 	// 	// s++;
-	// 	// 	return;
-	// 	// }
-	// 	// i++;
-	// }
+	i = 0;
+	while (map->map[i])
+	{
+		srand(clock());
+		y = rand()%map->resolution.y;
+		srand(clock());
+		x = rand()%map->resolution.y;
+		if (ft_strchr("0T", map->map[y][x]) && i % 3 == 0)
+		{
+			map->map[y][x] = 'T';
+			return;
+		}
+		i++;
+	}
 }
 
 void	enemy_collector(all_data *data)
