@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 13:27:04 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:17:17 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	player_mouver(char **map, pos p, int x, int y)
 {
 	static int	i;
 
+	if (map[p.y + y][p.x + x] == 'T')
+	{
+		ft_printf("You lose --you entered into an enemy LOL--");
+		exit(0);
+	}
 	if (map[p.y + y][p.x + x] != '1' && map[p.y + y][p.x + x] != 'E')
 	{
 		i++;
