@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 19:48:42 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:51:03 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int av, char **ac)
 	data.map = map_checker(av, ac);
 
 // enemy
-	enemy_spawner(data.map.map);
+	enemy_spawner(&data.map);
 	enemy_collector(&data);
 
 // window initialisation

@@ -6,28 +6,32 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:18:12 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:55:41 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	enemy_spawner(char **map)
+void	enemy_spawner(map_info *map)
 {
 	int	i;
-	int	j;
+	int x;
+	int y;
 
 	i = 0;
-	while (map[i])
+	while (map->map[i])
 	{
-		j = 0;
-		if (ft_strchr(map[i], '0') && i % 2 == 0)
+		srand(clock());
+		y = rand()%map->resolution.y;
+		srand(clock());
+		x = rand()%map->resolution.y;
+		if (ft_strchr("0", map->map[y][x]) && i % 3 == 0)
 		{
-			j = ft_strchr(map[i], '0') - map[i];
-			map[i][j] = 'T';
+			map->map[y][x] = 'T';
 		}
 		i++;
 	}
+	print_map(map->map);
 }
 
 // work on this shit 
@@ -35,26 +39,46 @@ void	enemy_respawner(char **map,enemy *enemy)
 {
 	int	i;
 //	int	j;
-	static int s;
+//	static int s;
 
 	i = 0;
 	print_map(map);
-//	map[enemy->p.y][enemy->p.x]='0';
+	//map[enemy->p.y][enemy->p.x]='0';
 	ft_printf("%d %d\n",enemy->p.y,enemy->p.x);
-	print_map(map);
-	while (map[i])
-	{
-		if (ft_strchr(map[i]+s%5 , '0') && i % 2 == 0)
-		{
-			// j = ft_strchr(map[i]+s%5 , '0') - map[i]+s%5 ;
-			// map[i+s%5][j+s%5] = 'T';
-			// enemy->p.y = i;
-			// enemy->p.x = j;
-			// s++;
-			return;
-		}
-		i++;
-	}
+	
+//	print_map(map);
+	// while (1)
+	// {
+	// 	// srand(clock());
+	// 	// i = rand()%map->resolution.y;
+	// 	// srand(clock());
+	// 	// i = rand()%map->resolution.y;
+	// 	// if (ft_strchr("0", map->map[i][j]))
+	// 	// {
+	// 	// 	map->map[i][j] = 'T';
+	// 	// }
+	// 	// j = 0;
+	// 	// if (ft_strchr(map[i], '0') && i % 2 == 0)
+	// 	// {
+	// 	// 	j = ft_strchr(map[i], '0') - map[i];
+	// 	// 	map[i][j] = 'T';
+	// 	// 	enemy->p.y = i;
+	// 	// 	enemy->p.x = j;
+	// 	// 	return;
+	// 	// }
+	// 	// i++;
+	// 	// if (ft_strchr(map[i]+s%5 , '0') && i % 2 == 0)
+	// 	// {
+			
+	// 	// 	// j = ft_strchr(map[i]+s%5 , '0') - map[i]+s%5 ;
+	// 	// 	// map[i+s%5][j+s%5] = 'T';
+	// 	// 	// enemy->p.y = i;
+	// 	// 	// enemy->p.x = j;
+	// 	// 	// s++;
+	// 	// 	return;
+	// 	// }
+	// 	// i++;
+	// }
 }
 
 void	enemy_collector(all_data *data)
@@ -108,47 +132,47 @@ void	enemy_direction(char **map, all_data *data)
 	en = data->enemy;
 	while (ft_memcmp(&en[count],&zero,sizeof(enemy)))
 	{
-		if (ft_strchr("1EGC", map[en[count].p.y - 1][en[count].p.x]))
+		if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x]))
 		{
 		if (en[count].direction == UPLEFT)
 			en[count].direction =  DOWNLEFT ;
 		else if (en[count].direction == UPRIGHT)
 			en[count].direction =  DOWNRIGHT;
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y][en[count].p.x + 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y][en[count].p.x + 1]))
 		{
 			if (en[count].direction == UPRIGHT)
 			en[count].direction = UPLEFT;
 			else if (en[count].direction ==  DOWNRIGHT)
 			en[count].direction =  DOWNLEFT;
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y + 1][en[count].p.x]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x]))
 		{
 			if (en[count].direction ==  DOWNRIGHT)
 				en[count].direction = UPRIGHT;
 			else if (en[count].direction ==  DOWNLEFT)
 				en[count].direction = UPLEFT;
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y][en[count].p.x - 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y][en[count].p.x - 1]))
 			{
 			if (en[count].direction ==  DOWNLEFT)
 				en[count].direction =  DOWNRIGHT;
 			else if (en[count].direction == UPLEFT)
 					en[count].direction = UPRIGHT;
 		}
-		if (ft_strchr("1EGC", map[en[count].p.y - 1][en[count].p.x + 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]))
 		{
 			enemy_respawner(map,&en[count]);
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y + 1][en[count].p.x + 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1]))
 		{
 			enemy_respawner(map,&en[count]);
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y - 1][en[count].p.x - 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1]))
 		{
 			enemy_respawner(map,&en[count]);
 		}
-		else if (ft_strchr("1EGC", map[en[count].p.y + 1][en[count].p.x - 1]))
+		else if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1]))
 		{
 			enemy_respawner(map,&en[count]);
 		}

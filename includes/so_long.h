@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 19:43:39 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:50:43 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "X.h"
 # include <fcntl.h>
 # include <mlx.h>
-
+# include <stdlib.h>
+# include <time.h>
 # define WINDOW_X 2560
 # define WINDOW_Y 1440
 
@@ -165,7 +166,7 @@ void			file_name_checker(char *str);
 
 void			map_modifier(all_data *data, int clock);
 int				elment_counter(char **map, char c);
-void			enemy_spawner(char **map);
+void			enemy_spawner(map_info *map);
 void			enemy_modifier(all_data *data, int clock, int frame_rate);
 
 void			enemy_collector(all_data *data);
