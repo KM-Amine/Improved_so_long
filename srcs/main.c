@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:51:03 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 10:37:58 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	render_frame(all_data *data)
 	{
 		map_modifier(data, i);
 		image_modifier(data->img, image_set);
-		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set,
-				data->map);
+		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set,data);
 	}
 	i++;
 	return (0);
@@ -35,6 +34,7 @@ int	exit_free(void *param)
 	exit(0);
 }
 
+// if malloc returns null;
 int	main(int av, char **ac)
 {
 	all_data	data;
@@ -42,6 +42,8 @@ int	main(int av, char **ac)
 	data.keys = ft_calloc(5, sizeof(key));
 	data.enemy = ft_calloc(20, sizeof(enemy));
 	data.map = map_checker(av, ac);
+	data.text.coins=0;
+	data.text.mouvement=0;
 	// enemy
 	enemy_spawner(&data.map);
 	enemy_collector(&data);

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:50:43 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 10:37:16 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,12 @@ typedef struct enemy
 	pos			p;
 }				enemy;
 
+typedef struct text_data
+{
+	int			mouvement;
+	int			coins;
+}				text_data;
+
 typedef struct all_data
 {
 	map_info	map;
@@ -128,6 +134,7 @@ typedef struct all_data
 	image_info	*img;
 	key			*keys;
 	enemy		*enemy;
+	text_data	text;
 }				all_data;
 
 //utils for map
@@ -149,8 +156,7 @@ int				key_press(int keycode, all_data *data);
 
 void			images_generator(image_info *img, void *mlx);
 void			images_destroyer(image_info *img, void *mlx);
-void			simple_map_printer(void *mlx, void *mlx_win, void **image_set,
-					map_info map);
+void			simple_map_printer(void *mlx, void *mlx_win, void **image_set, all_data *data);
 
 void			valid_path(map_check *check, char **map, int i);
 void			path_no_exit(map_check *check, char **map);

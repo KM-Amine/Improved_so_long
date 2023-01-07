@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 18:17:17 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 10:04:42 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	finish_game(all_data *data)
 	}
 }
 
-void	player_mouver(char **map, pos p, int x, int y)
+void	player_mouver(char **map, pos p, int x, int y, all_data *data)
 {
 	static int	i;
 
@@ -50,6 +50,8 @@ void	player_mouver(char **map, pos p, int x, int y)
 	if (map[p.y + y][p.x + x] != '1' && map[p.y + y][p.x + x] != 'E')
 	{
 		i++;
+		data->text.mouvement=i;
+		data->text.coins=elment_counter(map,'C');
 		ft_printf("Player mouved : %d times\n", i);
 		map[p.y][p.x] = '0';
 		map[p.y + y][p.x + x] = 'P';
@@ -130,13 +132,13 @@ void	player_modifier(all_data *data, int clock, int frame_rate)
 	{
 		get_cordonates(data->map.map, &p, 'P');
 		if (data->keys[right].status[press] == 1)
-			player_mouver(data->map.map, p, 1, 0);
+			player_mouver(data->map.map, p, 1, 0, data);
 		else if (data->keys[up].status[press] == 1)
-			player_mouver(data->map.map, p, 0, -1);
+			player_mouver(data->map.map, p, 0, -1, data);
 		else if (data->keys[down].status[press] == 1)
-			player_mouver(data->map.map, p, 0, 1);
+			player_mouver(data->map.map, p, 0, 1, data);
 		else if (data->keys[left].status[press] == 1)
-			player_mouver(data->map.map, p, -1, 0);
+			player_mouver(data->map.map, p, -1, 0, data);
 	}
 }
 
