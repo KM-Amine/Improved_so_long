@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 17:47:20 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:41:48 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*path_generator(int file, int dir)
 	free(path);
 	return (full);
 }
+//-------------------
 
 //free before exit
 //-------------------
