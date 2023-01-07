@@ -6,6 +6,7 @@
 		"unistd.h": "c",
 		"chrono": "c",
 		"so_long.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"libft.h": "c"
 	}
  }

@@ -50,8 +50,8 @@ void	player_mouver(char **map, pos p, int x, int y, all_data *data)
 	if (map[p.y + y][p.x + x] != '1' && map[p.y + y][p.x + x] != 'E')
 	{
 		i++;
-		data->text.mouvement=i;
-		data->text.coins=elment_counter(map,'C');
+		data->text.mouvement = i;
+		data->text.coins = elment_counter(map, 'C');
 		ft_printf("Player mouved : %d times\n", i);
 		map[p.y][p.x] = '0';
 		map[p.y + y][p.x + x] = 'P';

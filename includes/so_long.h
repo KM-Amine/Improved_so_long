@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 15:21:41 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:52:30 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,9 @@ typedef struct all_data
 	text_data	text;
 }				all_data;
 
-
-void	enemy_spawner(map_info *map);
-void	enemy_respawner(map_info *map,enemy *enemy);
-void	enemy_collector(all_data *data);
-
-
+void			enemy_spawner(map_info *map);
+void			enemy_respawner(map_info *map, enemy *enemy);
+void			enemy_collector(all_data *data);
 
 //utils for map
 void			free_map(char **map);
@@ -163,7 +160,8 @@ int				key_press(int keycode, all_data *data);
 
 void			images_generator(all_data *data, void *mlx);
 void			images_destroyer(image_info *img, void *mlx);
-void			simple_map_printer(void *mlx, void *mlx_win, void **image_set, all_data *data);
+void			simple_map_printer(void *mlx, void *mlx_win, void **image_set,
+					all_data *data);
 
 void			valid_path(map_check *check, char **map, int i);
 void			path_no_exit(map_check *check, char **map);
@@ -181,6 +179,15 @@ void			enemy_modifier(all_data *data, int clock, int frame_rate);
 void			enemy_collector(all_data *data);
 void			enemy_direction(char **map, all_data *data);
 
+void			extreme_checker(all_data *data, char **map, enemy *en,
+					int count);
+void			up_direction(char **map, all_data *data, enemy *en, int count);
+void			right_direction(char **map, all_data *data, enemy *en,
+					int count);
+void			down_direction(char **map, all_data *data, enemy *en,
+					int count);
+void			left_direction(char **map, all_data *data, enemy *en,
+					int count);
 int				key_press(int keycode, all_data *data);
 void			image_modifier(image_info *img, void **image_set);
 int				exit_free(void *param);

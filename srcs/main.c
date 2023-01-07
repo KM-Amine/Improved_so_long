@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 14:59:55 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:43:10 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	render_frame(all_data *data)
 	{
 		map_modifier(data, i);
 		image_modifier(data->img, image_set);
-		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set,data);
+		simple_map_printer(data->mlx.mlx, data->mlx.mlx_win, image_set, data);
 	}
 	i++;
 	return (0);
@@ -37,14 +37,26 @@ int	exit_free(void *param)
 	exit(0);
 }
 
-void data_intialisation(all_data *data,key *keys,enemy *enemies,image_info *img)
+void	images_destroyer(image_info *img, void *mlx)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(mlx, img[i].ptr);
+	}
+}
+
+void	data_intialisation(all_data *data, key *keys, enemy *enemies,
+		image_info *img)
 {
 	data->keys = keys;
-	ft_bzero(keys, sizeof(key)*5);
-	data->text=(text_data){0,0};
-	ft_bzero(enemies, sizeof(enemy)*20);
+	ft_bzero(keys, sizeof(key) * 5);
+	data->text = (text_data){0, 0};
+	ft_bzero(enemies, sizeof(enemy) * 20);
 	data->enemy = enemies;
-	ft_bzero(img, sizeof(image_info)*10);
+	ft_bzero(img, sizeof(image_info) * 10);
 	data->img = img;
 }
 
@@ -55,40 +67,36 @@ int	main(int av, char **ac)
 	enemy		enemies[20];
 	image_info	img[10];
 
-	//check map	
-	data.map = map_checker(av, ac); //check for malloc !NULL and free before exit
-
+	//check map
+	data.map = map_checker(av, ac);
+	//check for malloc !NULL and free before exit
 	//initialize data with 0
-	data_intialisation(&data,keys,enemies,img);
-
+	data_intialisation(&data, keys, enemies, img);
 	// enemy
 	enemy_spawner(&data.map);
 	enemy_collector(&data);
-
 	// window initialisation
 	data.mlx.mlx = mlx_init();
-	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
-
+	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x
+			* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
 	// image creation
-	images_generator(&data, data.mlx.mlx); //check for malloc !NULL and free before exit
-
+	images_generator(&data, data.mlx.mlx);
+	//check for malloc !NULL and free before exit
 	// hooking
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.mlx.mlx_win, KeyRelease, KeyReleaseMask, key_release, &data);
-	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, NULL);//exit free //check for malloc !NULL and free before exit
-
+	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, NULL);
+	//exit free //check for malloc !NULL and free before exit
 	//main system
-	mlx_loop_hook(data.mlx.mlx, render_frame, &data);//check for malloc !NULL and free before exit
+	mlx_loop_hook(data.mlx.mlx, render_frame, &data);
+	//check for malloc !NULL and free before exit
 	mlx_loop(data.mlx.mlx);
-
 	// player is on top of coin
 	// return value of mlx functions
-
 	// exiting
 	free_map(data.map.map);
 	images_destroyer(data.img, data.mlx.mlx);
 	mlx_destroy_window(data.mlx.mlx, data.mlx.mlx);
 	free(data.mlx.mlx);
-
 	return (0);
 }

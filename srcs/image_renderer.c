@@ -31,42 +31,49 @@ void	set_map_data(char **map, char c, char *set)
 	}
 }
 
-char *score_creator(int i,char c)
+char	*score_creator(int i, char c)
 {
-	char *tmp;
-	char *str;
+	char	*tmp;
+	char	*str;
 
 	tmp = ft_itoa(i);
 	if (c == 'M')
-		str = ft_strjoin("Number of movements: ",tmp);
+		str = ft_strjoin("Number of movements: ", tmp);
 	else
-		str = ft_strjoin("Number of coins left: ",tmp);
+		str = ft_strjoin("Number of coins left: ", tmp);
 	free(tmp);
 	return (str);
 }
 
-void score_layer(char *set, void **image_set, all_data *data, void *mlx,void *mlx_win)
+void	score_layer(char *set, void **image_set, all_data *data, void *mlx,
+		void *mlx_win)
 {
-	int j;
-	int i;
-	int mouvement;
-	char *mvstr;
+	int		j;
+	int		i;
+	int		mouvement;
+	char	*mvstr;
+
 	(void)set;
 	j = data->map.resolution.y;
 	i = 0;
-	mouvement=data->text.mouvement;
+	mouvement = data->text.mouvement;
 	mlx_clear_window(mlx, mlx_win);
-	mlx_put_image_to_window(mlx, mlx_win, image_set[7], i* SPRITE_X, j * SPRITE_Y);
-	while(i < data->map.resolution.x)
+	mlx_put_image_to_window(mlx, mlx_win, image_set[7], i * SPRITE_X, j
+			* SPRITE_Y);
+	while (i < data->map.resolution.x)
 	{
-		mlx_put_image_to_window(mlx, mlx_win, image_set[8], i* SPRITE_X, j * SPRITE_Y);
+		mlx_put_image_to_window(mlx, mlx_win, image_set[8], i * SPRITE_X, j
+				* SPRITE_Y);
 		i++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, image_set[9], (i-1)* SPRITE_X, j * SPRITE_Y);
-	mvstr = score_creator(mouvement,'M');
-	mlx_string_put(mlx, mlx_win,SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x0000FFFF,mvstr);
-	mvstr = score_creator(mouvement,'C');
-	mlx_string_put(mlx, mlx_win,i*SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x0000FFFF,mvstr);
+	mlx_put_image_to_window(mlx, mlx_win, image_set[9], (i - 1) * SPRITE_X, j
+			* SPRITE_Y);
+	mvstr = score_creator(mouvement, 'M');
+	mlx_string_put(mlx, mlx_win, SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y / 3,
+			0x0000FFFF, mvstr);
+	mvstr = score_creator(mouvement, 'C');
+	mlx_string_put(mlx, mlx_win, i * SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y
+			/ 3, 0x0000FFFF, mvstr);
 	free(mvstr);
 }
 
@@ -147,8 +154,8 @@ void	player_layer(char *set, void **image_set, map_info map, void *mlx,
 	free_map(copy);
 }
 
-
-void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,all_data *data)
+void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,
+		all_data *data)
 {
 	char *set = "01ECPGT";
 

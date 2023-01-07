@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 14:49:14 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:47:20 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*path_generator(int file, int dir)
 	return (full);
 }
 
+//free before exit
+//-------------------
 void	images_generator(all_data *data, void *mlx)
 {
 	int		i;
@@ -47,32 +49,23 @@ void	images_generator(all_data *data, void *mlx)
 		while (j < 10)
 		{
 			path = path_generator(i, j);
-			if(open(path,O_RDONLY) == -1)
+			if (open(path, O_RDONLY) == -1)
 			{
 				free(path);
 				j++;
-				continue;
+				continue ;
 			}
-			data->img[j].ptr[i] = mlx_xpm_file_to_image(mlx, path,&(data->img[j].resolution.x), &(data->img[j].resolution.y));
-			if(!(data->img[j].ptr[i]))
-				exit(1);//exit function
+			data->img[j].ptr[i] = mlx_xpm_file_to_image(mlx, path,
+					&(data->img[j].resolution.x), &(data->img[j].resolution.y));
+			if (!(data->img[j].ptr[i]))
+				exit(1); //exit function
 			free(path);
 			j++;
 		}
 		i++;
 	}
 }
-
-void	images_destroyer(image_info *img, void *mlx)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		mlx_destroy_image(mlx, img[i].ptr);
-	}
-}
+//-------------------
 
 void	image_animation(int element, int frame_rate, image_info *img,
 		void **image_set, int clock)
@@ -93,8 +86,8 @@ void	image_animation(int element, int frame_rate, image_info *img,
 
 void	image_modifier(image_info *img, void **image_set)
 {
-	static int clock;
-	int i;
+	static int	clock;
+	int			i;
 
 	i = 0;
 	while (i < 10)
