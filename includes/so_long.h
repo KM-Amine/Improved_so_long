@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 10:37:16 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:21:41 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,13 @@ typedef struct all_data
 	text_data	text;
 }				all_data;
 
+
+void	enemy_spawner(map_info *map);
+void	enemy_respawner(map_info *map,enemy *enemy);
+void	enemy_collector(all_data *data);
+
+
+
 //utils for map
 void			free_map(char **map);
 char			**read_map(char *file);
@@ -154,7 +161,7 @@ void			valid_path_handler(map_check *check, char **map);
 int				key_release(int keycode, all_data *data);
 int				key_press(int keycode, all_data *data);
 
-void			images_generator(image_info *img, void *mlx);
+void			images_generator(all_data *data, void *mlx);
 void			images_destroyer(image_info *img, void *mlx);
 void			simple_map_printer(void *mlx, void *mlx_win, void **image_set, all_data *data);
 

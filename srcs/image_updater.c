@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 11:46:49 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:31:33 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_exit(char **map)
 		return ;
 	map[p.x][p.y] = 'G';
 }
-
+/////free and exit and !NULL
 void	finish_game(all_data *data)
 {
 	char	**map;
@@ -37,7 +37,7 @@ void	finish_game(all_data *data)
 		}
 	}
 }
-
+///////
 void	player_mouver(char **map, pos p, int x, int y, all_data *data)
 {
 	static int	i;
@@ -57,7 +57,7 @@ void	player_mouver(char **map, pos p, int x, int y, all_data *data)
 		map[p.y + y][p.x + x] = 'P';
 	}
 }
-
+///////
 int	key_press(int keycode, all_data *data)
 {
 	pos	p;

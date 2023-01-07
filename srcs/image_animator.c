@@ -6,12 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 11:33:40 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:49:14 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//malloc number free and !NULL 2 funcs
 char	*path_generator(int file, int dir)
 {
 	char	*file_path;
@@ -33,7 +34,7 @@ char	*path_generator(int file, int dir)
 	return (full);
 }
 
-void	images_generator(image_info *img, void *mlx)
+void	images_generator(all_data *data, void *mlx)
 {
 	int		i;
 	int		j;
@@ -46,20 +47,22 @@ void	images_generator(image_info *img, void *mlx)
 		while (j < 10)
 		{
 			path = path_generator(i, j);
-			//ft_printf("%s\n", path);
-			img[j].ptr[i] = mlx_xpm_file_to_image(mlx, path,
-					&img[5].resolution.x, &img[5].resolution.y);
+			if(open(path,O_RDONLY) == -1)
+			{
+				free(path);
+				j++;
+				continue;
+			}
+			data->img[j].ptr[i] = mlx_xpm_file_to_image(mlx, path,&(data->img[j].resolution.x), &(data->img[j].resolution.y));
+			if(!(data->img[j].ptr[i]))
+				exit(1);//exit function
 			free(path);
 			j++;
 		}
 		i++;
 	}
-	// img[background].ptr[0]=mlx_xpm_file_to_image(mlx,"./images/-0.xpm",&img[0].resolution.x,&img[0].resolution.y);
-	// img[wall].ptr[0]=mlx_xpm_file_to_image(mlx,"./images/-1.xpm",&img[2].resolution.x,&img[2].resolution.y);
-	// img[collectibales].ptr[0]=mlx_xpm_file_to_image(mlx,"./images/-2.xpm",&img[4].resolution.x,&img[4].resolution.y);
-	// img[map_exit].ptr[0]=mlx_xpm_file_to_image(mlx,"./images/-3.xpm",&img[3].resolution.x,&img[3].resolution.y);
-	// img[go].ptr[0]=mlx_xpm_file_to_image(mlx,"./images/-4.xpm",&img[5].resolution.x,&img[5].resolution.y);
 }
+
 void	images_destroyer(image_info *img, void *mlx)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 12:29:15 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:59:55 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ int	render_frame(all_data *data)
 	return (0);
 }
 
-//malloc free 
-// if malloc returns null;
+// malloc free
+// if malloc returns NULL
+
 int	exit_free(void *param)
 {
 	(void)param;
 	ft_printf("-----exit done----\n");
 	exit(0);
 }
+
 void data_intialisation(all_data *data,key *keys,enemy *enemies,image_info *img)
 {
 	data->keys = keys;
@@ -52,9 +54,9 @@ int	main(int av, char **ac)
 	key			keys[5];
 	enemy		enemies[20];
 	image_info	img[10];
-	
+
 	//check map	
-	data.map = map_checker(av, ac);
+	data.map = map_checker(av, ac); //check for malloc !NULL and free before exit
 
 	//initialize data with 0
 	data_intialisation(&data,keys,enemies,img);
@@ -68,25 +70,25 @@ int	main(int av, char **ac)
 	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
 
 	// image creation
-	images_generator(data.img, data.mlx.mlx);
+	images_generator(&data, data.mlx.mlx); //check for malloc !NULL and free before exit
 
 	// hooking
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.mlx.mlx_win, KeyRelease, KeyReleaseMask, key_release, &data);
-	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, NULL);
+	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, NULL);//exit free //check for malloc !NULL and free before exit
 
 	//main system
-	mlx_loop_hook(data.mlx.mlx, render_frame, &data);
+	mlx_loop_hook(data.mlx.mlx, render_frame, &data);//check for malloc !NULL and free before exit
 	mlx_loop(data.mlx.mlx);
-	
+
 	// player is on top of coin
-	//return value of mlx functions
+	// return value of mlx functions
 
 	// exiting
 	free_map(data.map.map);
 	images_destroyer(data.img, data.mlx.mlx);
 	mlx_destroy_window(data.mlx.mlx, data.mlx.mlx);
 	free(data.mlx.mlx);
-	
+
 	return (0);
 }

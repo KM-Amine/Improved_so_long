@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 11:55:41 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:23:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_map_data(char **map, char c, char *set)
 		i++;
 	}
 }
+
 char *score_creator(int i,char c)
 {
 	char *tmp;
@@ -43,6 +44,7 @@ char *score_creator(int i,char c)
 	free(tmp);
 	return (str);
 }
+
 void score_layer(char *set, void **image_set, all_data *data, void *mlx,void *mlx_win)
 {
 	int j;
@@ -67,8 +69,6 @@ void score_layer(char *set, void **image_set, all_data *data, void *mlx,void *ml
 	mlx_string_put(mlx, mlx_win,i*SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x0000FFFF,mvstr);
 	free(mvstr);
 }
-
-
 
 void	backgroud_layer(char *set, void **image_set, map_info map, void *mlx,
 		void *mlx_win)
