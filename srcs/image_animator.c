@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/05 15:40:02 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:33:40 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	images_destroyer(image_info *img, void *mlx)
 void	image_animation(int element, int frame_rate, image_info *img,
 		void **image_set, int clock)
 {
-	static int	count[7];
+	static int	count[10];
 
 	if (clock % frame_rate == 0)
 	{
@@ -94,7 +94,7 @@ void	image_modifier(image_info *img, void **image_set)
 	int i;
 
 	i = 0;
-	while (i < 7)
+	while (i < 10)
 	{
 		image_animation(i, 4, img, image_set, clock);
 		i++;

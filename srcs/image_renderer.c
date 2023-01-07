@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 10:46:58 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:55:41 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,47 @@ void	set_map_data(char **map, char c, char *set)
 		i++;
 	}
 }
+char *score_creator(int i,char c)
+{
+	char *tmp;
+	char *str;
+
+	tmp = ft_itoa(i);
+	if (c == 'M')
+		str = ft_strjoin("Number of movements: ",tmp);
+	else
+		str = ft_strjoin("Number of coins left: ",tmp);
+	free(tmp);
+	return (str);
+}
+void score_layer(char *set, void **image_set, all_data *data, void *mlx,void *mlx_win)
+{
+	int j;
+	int i;
+	int mouvement;
+	char *mvstr;
+	(void)set;
+	j = data->map.resolution.y;
+	i = 0;
+	mouvement=data->text.mouvement;
+	mlx_clear_window(mlx, mlx_win);
+	mlx_put_image_to_window(mlx, mlx_win, image_set[7], i* SPRITE_X, j * SPRITE_Y);
+	while(i < data->map.resolution.x)
+	{
+		mlx_put_image_to_window(mlx, mlx_win, image_set[8], i* SPRITE_X, j * SPRITE_Y);
+		i++;
+	}
+	mlx_put_image_to_window(mlx, mlx_win, image_set[9], (i-1)* SPRITE_X, j * SPRITE_Y);
+	mvstr = score_creator(mouvement,'M');
+	mlx_string_put(mlx, mlx_win,SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x0000FFFF,mvstr);
+	mvstr = score_creator(mouvement,'C');
+	mlx_string_put(mlx, mlx_win,i*SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x0000FFFF,mvstr);
+	free(mvstr);
+}
 
 
-void	first_layer(char *set, void **image_set, map_info map, void *mlx,
+
+void	backgroud_layer(char *set, void **image_set, map_info map, void *mlx,
 		void *mlx_win)
 {
 	char	**copy;
@@ -75,7 +113,7 @@ void	first_layer(char *set, void **image_set, map_info map, void *mlx,
 	}
 	free_map(copy);
 }
-void	second_layer(char *set, void **image_set, map_info map, void *mlx,
+void	player_layer(char *set, void **image_set, map_info map, void *mlx,
 		void *mlx_win)
 {
 	char	**copy;
@@ -109,26 +147,12 @@ void	second_layer(char *set, void **image_set, map_info map, void *mlx,
 	free_map(copy);
 }
 
-void thrid_layer(char *set, void **image_set, all_data *data, void *mlx,void *mlx_win)
-{
-	int j;
-	int i;
-	(void)set;
-	j = data->map.resolution.y;
-	i = 0;
-	while(i < data->map.resolution.x)
-	{
-		mlx_put_image_to_window(mlx, mlx_win, image_set[background], i* SPRITE_X, j * SPRITE_Y);
-		i++;
-	}
-	mlx_string_put(mlx, mlx_win,SPRITE_X/2,(j * SPRITE_Y)+ SPRITE_Y/3,0x00FFFFFF,"lol");
-}
 
 void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,all_data *data)
 {
 	char *set = "01ECPGT";
 
-	first_layer(set, image_set, data->map, mlx, mlx_win);
-	second_layer(set, image_set, data->map, mlx, mlx_win);
-	thrid_layer(set, image_set, data, mlx, mlx_win);
+	score_layer(set, image_set, data, mlx, mlx_win);
+	backgroud_layer(set, image_set, data->map, mlx, mlx_win);
+	player_layer(set, image_set, data->map, mlx, mlx_win);
 }

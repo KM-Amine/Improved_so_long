@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 10:04:42 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:46:49 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	key_release(int keycode, all_data *data)
 	{
 		data->keys[4].status[0] = 1;
 	}
-	ft_printf("%d %d\n", data->keys[0].status[0], data->keys[0].status[1]);
 	return (0);
 }
 
