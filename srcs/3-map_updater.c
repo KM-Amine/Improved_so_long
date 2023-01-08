@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:44:18 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:46:50 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,18 @@ void	finish_game(all_data *data, int i)
 	{
 		set_exit(map);
 		if (elment_counter(map, 'G') == 0)
-		{
-			ft_printf("You won");
-			exit(0);
-		}
+			ft_printf("You won you collected all coins and exited with %d moves",data->text.mouvement);
 	}
 	if (i == 1)
-	{
 		ft_printf("---You lose --enemy touched you---");
-		exit(0);
-	}
 	if (i == 2)
-	{
 		ft_printf("---Exited with escape botton---");
-		exit(0);
-	}
 	if (i == 3)
-	{
 		ft_printf("---You lose --you entered into an enemy LOL---");
-		exit(0);
-	}
 	if (i == 4)
-	{
 		ft_printf("---Exited from cross window's frame---");
-		exit(0);
-	}
+	total_clean(data);
+	exit(0);
 }
 ///////
 
