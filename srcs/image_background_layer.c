@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:20:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 14:53:00 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:11:25 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ void	set_map_data(char **map, char c, char *set)
 	}
 }
 
-void	backgroud_layer(char *set, void **image_set, map_info map,
-		all_data *data)
+void	zero_printer(all_data *data, void **image_set)
 {
 	char	**copy;
 	int		i;
 	int		j;
-	int		index;
 
-	copy = map_copy(map.map);
+	copy = map_copy(data->map.map);
 	set_map_data(copy, '0', "CP1EGT");
 	i = 0;
 	while (copy[i])
@@ -47,15 +45,22 @@ void	backgroud_layer(char *set, void **image_set, map_info map,
 		j = 0;
 		while (copy[i][j])
 		{
-			index = ft_strchr(set, copy[i][j]) - set;
 			mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-					image_set[background], SPRITE_X * j, SPRITE_Y * i);
+				image_set[background], SPRITE_X * j, SPRITE_Y * i);
 			j++;
 		}
 		i++;
 	}
 	free_map(copy);
-	copy = map_copy(map.map);
+}
+
+void	wall_printer(all_data *data, void **image_set)
+{
+	int		i;
+	int		j;
+	char	**copy;
+
+	copy = map_copy(data->map.map);
 	i = 0;
 	while (copy[i])
 	{
@@ -64,13 +69,18 @@ void	backgroud_layer(char *set, void **image_set, map_info map,
 		{
 			if (ft_strchr("1EG", copy[i][j]))
 			{
-				index = ft_strchr(set, copy[i][j]) - set;
 				mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-						image_set[index], SPRITE_X * j, SPRITE_Y * i);
+					image_set[wall], SPRITE_X * j, SPRITE_Y * i);
 			}
 			j++;
 		}
 		i++;
 	}
 	free_map(copy);
+}
+
+void	backgroud_layer(void **image_set, all_data *data)
+{
+	zero_printer(data, image_set);
+	wall_printer(data, image_set);
 }

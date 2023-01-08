@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 14:42:36 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:20:57 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int				exit_free(void *param);
 
 void			player_mouver(pos p, int x, int y, all_data *data);
 void			player_modifier(all_data *data, int clock, int frame_rate);
-void			backgroud_layer(char *set, void **image_set, map_info map,
-					all_data *data);
+void			backgroud_layer(void **image_set, all_data *data);
+void			score_layer(void **image_set, all_data *data);
 
 #endif

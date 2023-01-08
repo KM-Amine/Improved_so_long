@@ -6,63 +6,11 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 14:46:00 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:16:50 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-char	*score_creator(int i, char c)
-{
-	char	*tmp;
-	char	*str;
-
-	tmp = ft_itoa(i);
-	if (c == 'M')
-		str = ft_strjoin("Number of movements: ", tmp);
-	else
-		str = ft_strjoin("Number of coins left: ", tmp);
-	free(tmp);
-	return (str);
-}
-
-void	score_printer(int i, int j, all_data *data)
-{
-	int		mouvement;
-	char	*mvstr;
-	int		coins;
-
-	mouvement = data->text.mouvement;
-	coins = data->text.coins;
-	mvstr = score_creator(mouvement, 'M');
-	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, SPRITE_X / 2, (j
-			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
-	mvstr = score_creator(coins, 'C');
-	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, i * SPRITE_X / 2, (j
-			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
-	free(mvstr);
-}
-
-void	score_layer(void **image_set, all_data *data)
-{
-	int	j;
-	int	i;
-
-	j = data->map.resolution.y;
-	i = 0;
-	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[7], i
-		* SPRITE_X, j * SPRITE_Y);
-	while (i < data->map.resolution.x)
-	{
-		mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[8],
-			i * SPRITE_X, j * SPRITE_Y);
-		i++;
-	}
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[9], (i
-			- 1) * SPRITE_X, j * SPRITE_Y);
-	score_printer(i, j, data);
-}
 
 void	player_layer(char *set, void **image_set, map_info map, void *mlx, void *mlx_win)
 {
@@ -103,6 +51,6 @@ void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,
 
 	set = "01ECPGT";
 	score_layer(image_set, data);
-	backgroud_layer(set, image_set, data->map, data);
+	backgroud_layer(image_set, data);
 	player_layer(set, image_set, data->map, mlx, mlx_win);
 }
