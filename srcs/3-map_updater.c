@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 17:41:44 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:44:18 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	player_mouver(pos p, int x, int y, all_data *data)
 	static int	i;
 
 	if (data->map.map[p.y + y][p.x + x] == 'T')
-	{
-		ft_printf("You lose --you entered into an enemy LOL--");
-		exit(0);//finish
-	}
+		finish_game(data, 3);
 	if (data->map.map[p.y + y][p.x + x] != '1' && data->map.map[p.y + y][p.x
 		+ x] != 'E')
 	{
@@ -61,8 +58,16 @@ void	set_exit(char **map)
 	map[p.x][p.y] = 'G';
 }
 
+void	total_clean(all_data *data)
+{
+	free_map(data->map.map);
+	images_destroyer(data->img, data->mlx.mlx);
+	mlx_clear_window(data->mlx.mlx,data->mlx.mlx);
+	mlx_destroy_window(data->mlx.mlx,data->mlx.mlx);
+	free(data->mlx.mlx);
+}
 /////free and exit and !NULL
-void	finish_game(all_data *data)
+void	finish_game(all_data *data, int i)
 {
 	char	**map;
 
@@ -76,6 +81,26 @@ void	finish_game(all_data *data)
 			exit(0);
 		}
 	}
+	if (i == 1)
+	{
+		ft_printf("---You lose --enemy touched you---");
+		exit(0);
+	}
+	if (i == 2)
+	{
+		ft_printf("---Exited with escape botton---");
+		exit(0);
+	}
+	if (i == 3)
+	{
+		ft_printf("---You lose --you entered into an enemy LOL---");
+		exit(0);
+	}
+	if (i == 4)
+	{
+		ft_printf("---Exited from cross window's frame---");
+		exit(0);
+	}
 }
 ///////
 
@@ -83,5 +108,5 @@ void	map_modifier(all_data *data, int clock)
 {
 	enemy_modifier(data, clock, 50);
 	player_modifier(data, clock, 5);
-	finish_game(data);
+	finish_game(data, 0);
 }

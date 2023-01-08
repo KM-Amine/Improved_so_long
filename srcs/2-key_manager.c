@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 09:16:56 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 17:39:00 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:25:01 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	key_release_modifier(all_data *data, int p)
 	data->keys[p].status[1] = 1;
 }
 
-//exit system---------------------
 int	key_press(int keycode, all_data *data)
 {
 	pos	p;
@@ -39,14 +38,9 @@ int	key_press(int keycode, all_data *data)
 	if (keycode == A)
 		key_press_modifier(data, left);
 	if (keycode == ESC)
-	{
-		data->keys[4].status[0] = 1;
-		//finish game
-		exit_free(NULL);
-	}
+		finish_game(data, 2);
 	return (0);
 }
-//------------------------------
 
 int	key_release(int keycode, all_data *data)
 {

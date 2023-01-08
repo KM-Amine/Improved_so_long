@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:43:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:12:10 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:02:04 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	map_error_handling(char **map)
 
 void	file_name_checker(char *str)
 {
-	int		error;
 	int		fd;
 	int		len;
 	char	*ptr;
 
-	error = 0;
 	len = 0;
 	if (ft_strlen(str) > 4)
 		len = ft_strlen(str) - 4;

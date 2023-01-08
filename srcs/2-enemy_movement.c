@@ -6,31 +6,24 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 17:36:29 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:58:15 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-//free before exit
-//-------------------
-void	enemy_mouver(char **map, pos *p, int x, int y)
+void	enemy_mouver(all_data *data, pos *p, int x, int y)
 {
-	if (ft_strchr("P", map[p->y + y][p->x + x]))
+	if (ft_strchr("P", data->map.map[p->y + y][p->x + x]))
+		finish_game(data, 1);
+	if (ft_strchr("1EGT", data->map.map[p->y + y][p->x + x]) == NULL)
 	{
-		///finish game
-		ft_printf("You lose --enemy touched you--");
-		exit(0);
-	}
-	if (ft_strchr("1EGT", map[p->y + y][p->x + x]) == NULL)
-	{
-		map[p->y][p->x] = '0';
-		map[p->y + y][p->x + x] = 'T';
+		data->map.map[p->y][p->x] = '0';
+		data->map.map[p->y + y][p->x + x] = 'T';
 		p->y = p->y + y;
 		p->x = p->x + x;
 	}
 }
-//-------------------
 
 void	enemy_modifier(all_data *data, int clock, int frame_rate)
 {
@@ -45,13 +38,13 @@ void	enemy_modifier(all_data *data, int clock, int frame_rate)
 		while (ft_memcmp(&(data->enemy[count]), &zero, sizeof(enemy)))
 		{
 			if (data->enemy[count].direction == DOWNRIGHT)
-				enemy_mouver(data->map.map, &data->enemy[count].p, 1, 1);
+				enemy_mouver(data, &data->enemy[count].p, 1, 1);
 			else if (data->enemy[count].direction == DOWNLEFT)
-				enemy_mouver(data->map.map, &data->enemy[count].p, -1, 1);
+				enemy_mouver(data, &data->enemy[count].p, -1, 1);
 			else if (data->enemy[count].direction == UPLEFT)
-				enemy_mouver(data->map.map, &data->enemy[count].p, -1, -1);
+				enemy_mouver(data, &data->enemy[count].p, -1, -1);
 			else if (data->enemy[count].direction == UPRIGHT)
-				enemy_mouver(data->map.map, &data->enemy[count].p, 1, -1);
+				enemy_mouver(data, &data->enemy[count].p, 1, -1);
 			count++;
 		}
 	}
@@ -62,9 +55,7 @@ void	enemy_direction(char **map, all_data *data)
 	enemy	*en;
 	int		count;
 	enemy	zero;
-	int		check;
 
-	check = 0;
 	ft_bzero(&zero, sizeof(enemy));
 	count = 0;
 	en = data->enemy;

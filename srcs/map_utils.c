@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:12 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 17:43:27 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:02:26 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,6 @@ void	print_map(char **map)
 
 void	get_dimentions(char **map, pos *cordonates)
 {
-	int	i;
-
-	i = 0;
 	cordonates->y = 0;
 	cordonates->x = ft_strlen(map[0]);
 	while (map[cordonates->y])

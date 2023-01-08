@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   1-main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 16:25:41 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:39:05 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,17 @@ int	render_frame(all_data *data)
 	return (0);
 }
 
+int	exit_cross(all_data *data)
+{
+	finish_game(data, 4);
+	return (0);
+}
+
 // static functions
 // malloc free
 // if malloc returns NULL
-int	exit_free(void *param)
-{
-	(void)param;
-	ft_printf("-----exit done----\n");
-	exit(0);
-}
 
-void	images_destroyer(image_info *img, void *mlx)
-{
-	int	i;
 
-	i = 0;
-	while (i < 4)
-	{
-		mlx_destroy_image(mlx, img[i].ptr);
-	}
-}
 
 //initialize data with 0
 void	data_intialisation(all_data *data, key *keys, enemy *enemies,
@@ -87,7 +78,7 @@ int	main(int av, char **ac)
 
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.mlx.mlx_win, KeyRelease, KeyReleaseMask, key_release, &data);
-	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_free, &data);
+	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_cross, &data);
 	//exit free //check for malloc !NULL and free before exit
 	
 	mlx_loop_hook(data.mlx.mlx, render_frame, &data);
@@ -98,7 +89,6 @@ int	main(int av, char **ac)
 	// return value of mlx functions
 	
 	// exiting
-	free_map(data.map.map);
 	images_destroyer(data.img, data.mlx.mlx);
 	mlx_destroy_window(data.mlx.mlx, data.mlx.mlx);
 	free(data.mlx.mlx);

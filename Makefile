@@ -67,10 +67,12 @@ norm:
 #^
 #|
 ######	Delete this shit!!!!!!!!######
+#	$(CC) $(CFLAGS) libft/libft.a $(OBJ) -lmlx -lXext -lX11 -o $(NAME)
 
 
 
 $(NAME): $(LIBFT) $(OBJ)
+	@$(MAKE) -C libft
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 objs/%.o: srcs/%.c $(HEADER)

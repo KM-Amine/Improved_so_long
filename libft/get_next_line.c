@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:03:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/04 18:27:40 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:12:27 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char *s, size_t start, size_t len)
+char	*ft_substr_2(char *s, size_t start, size_t len)
 {
 	char	*res;
 
@@ -88,13 +88,13 @@ char	*ft_turncate_line(char *tmp, char **line)
 	i = 0;
 	while (tmp[i] != '\n' && tmp[i] != '\0')
 		i++;
-	*line = ft_substr(tmp, 0, i + 1);
+	*line = ft_substr_2(tmp, 0, i + 1);
 	if (*line == NULL)
 	{
 		*line = NULL;
 		return (NULL);
 	}
-	remain = ft_substr(tmp, i + 1, ft_strlen(tmp));
+	remain = ft_substr_2(tmp, i + 1, ft_strlen(tmp));
 	if (remain == NULL)
 	{
 		free(*line);
