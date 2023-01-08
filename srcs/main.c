@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 13:14:09 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:23:17 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	render_frame(all_data *data)
 	i++;
 	return (0);
 }
-
+// static functions
 // malloc free
 // if malloc returns NULL
 
