@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:39:05 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:49:30 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,16 @@ int	exit_cross(all_data *data)
 // malloc free
 // if malloc returns NULL
 
+void	images_destroyer(image_info *img, void *mlx)
+{
+	int	i;
 
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(mlx, img[i].ptr);
+	}
+}
 
 //initialize data with 0
 void	data_intialisation(all_data *data, key *keys, enemy *enemies,

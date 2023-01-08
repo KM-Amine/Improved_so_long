@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:46:50 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:57:22 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ void	set_exit(char **map)
 
 void	total_clean(all_data *data)
 {
-	free_map(data->map.map);
-	images_destroyer(data->img, data->mlx.mlx);
+	(void)data;
+//	free_map(data->map.map);
+//	images_destroyer(data->img, data->mlx.mlx);
 	mlx_clear_window(data->mlx.mlx,data->mlx.mlx);
-	mlx_destroy_window(data->mlx.mlx,data->mlx.mlx);
+//	mlx_destroy_window(data->mlx.mlx,data->mlx.mlx);
 	free(data->mlx.mlx);
 }
 /////free and exit and !NULL
@@ -76,7 +77,10 @@ void	finish_game(all_data *data, int i)
 	{
 		set_exit(map);
 		if (elment_counter(map, 'G') == 0)
+		{
 			ft_printf("You won you collected all coins and exited with %d moves",data->text.mouvement);
+			i=-1;
+		}
 	}
 	if (i == 1)
 		ft_printf("---You lose --enemy touched you---");
@@ -86,8 +90,11 @@ void	finish_game(all_data *data, int i)
 		ft_printf("---You lose --you entered into an enemy LOL---");
 	if (i == 4)
 		ft_printf("---Exited from cross window's frame---");
-	total_clean(data);
-	exit(0);
+	if (i != 0)
+	{
+		total_clean(data);
+		exit(0);
+	}
 }
 ///////
 
