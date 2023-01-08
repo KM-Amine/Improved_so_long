@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 15:52:30 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:30:44 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,8 @@ void			left_direction(char **map, all_data *data, enemy *en,
 int				key_press(int keycode, all_data *data);
 void			image_modifier(image_info *img, void **image_set);
 int				exit_free(void *param);
+
+void			player_mouver(pos p, int x, int y, all_data *data);
+void			player_modifier(all_data *data, int clock, int frame_rate);
 
 #endif

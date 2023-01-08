@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 13:23:02 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:48:26 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void	score_layer(char *set, void **image_set, all_data *data, void *mlx,
 	int		i;
 	int		mouvement;
 	char	*mvstr;
+	int		coins;
 
 	(void)set;
 	j = data->map.resolution.y;
 	i = 0;
 	mouvement = data->text.mouvement;
+	coins = data->text.coins;
 	mlx_clear_window(mlx, mlx_win);
 	mlx_put_image_to_window(mlx, mlx_win, image_set[7], i * SPRITE_X, j
 			* SPRITE_Y);
@@ -71,7 +73,7 @@ void	score_layer(char *set, void **image_set, all_data *data, void *mlx,
 	mvstr = score_creator(mouvement, 'M');
 	mlx_string_put(mlx, mlx_win, SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y / 3,
 			0x0000FFFF, mvstr);
-	mvstr = score_creator(mouvement, 'C');
+	mvstr = score_creator(coins, 'C');
 	mlx_string_put(mlx, mlx_win, i * SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y
 			/ 3, 0x0000FFFF, mvstr);
 	free(mvstr);
