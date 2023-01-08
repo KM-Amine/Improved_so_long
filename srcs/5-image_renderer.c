@@ -6,21 +6,30 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 15:23:06 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:43:12 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	player_layer(char *set, void **image_set, map_info map, void *mlx, void *mlx_win)
+void	simple_map_printer(void **image_set, all_data *data)
+{
+	char	*set;
+
+	set = "01ECPGT";
+	score_layer(image_set, data);
+	backgroud_layer(set, image_set, data);
+	player_layer(set, image_set, data);
+}
+
+void	player_layer(char *set, void **image_set, all_data *data)
 {
 	char	**copy;
 	int		i;
 	int		j;
 	int		index;
 
-	(void)set;
-	copy = map_copy(map.map);
+	copy = map_copy(data->map.map);
 	i = 0;
 	while (copy[i])
 	{
@@ -29,28 +38,13 @@ void	player_layer(char *set, void **image_set, map_info map, void *mlx, void *ml
 		{
 			if (ft_strchr("CPT", copy[i][j]))
 			{
-				if (copy[i][j] == 'C')
-					index = 3;
-				else if (copy[i][j] == 'P')
-					index = 4;
-				else if (copy[i][j] == 'T')
-					index = 6;
-				mlx_put_image_to_window(mlx, mlx_win, image_set[index], SPRITE_X* j, SPRITE_Y * i);
+				index = ft_strchr(set, copy[i][j]) - set;
+				mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
+					image_set[index], SPRITE_X * j, SPRITE_Y * i);
 			}
 			j++;
 		}
 		i++;
 	}
 	free_map(copy);
-}
-
-void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,
-		all_data *data)
-{
-	char	*set;
-
-	set = "01ECPGT";
-	score_layer(image_set, data);
-	backgroud_layer(image_set, data);
-	player_layer(set, image_set, data->map, mlx, mlx_win);
 }

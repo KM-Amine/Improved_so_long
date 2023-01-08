@@ -147,9 +147,9 @@ void	get_cordonates(char **map, pos *cordonates, char c)
 
 int	elment_counter(char **map, char c)
 {
-	int i;
-	int j;
-	int counter;
+	int	i;
+	int	j;
+	int	counter;
 
 	counter = 0;
 	i = 0;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_layers.c                                     :+:      :+:    :+:   */
+/*   image_background_layer.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:20:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 15:11:25 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:34:06 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void	zero_printer(all_data *data, void **image_set)
 	free_map(copy);
 }
 
-void	wall_printer(all_data *data, void **image_set)
+void	wall_exit_printer(char *set, all_data *data, void **image_set)
 {
 	int		i;
 	int		j;
 	char	**copy;
+	int		index;
 
 	copy = map_copy(data->map.map);
 	i = 0;
@@ -69,8 +70,9 @@ void	wall_printer(all_data *data, void **image_set)
 		{
 			if (ft_strchr("1EG", copy[i][j]))
 			{
+				index = ft_strchr(set, copy[i][j]) - set;
 				mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-					image_set[wall], SPRITE_X * j, SPRITE_Y * i);
+					image_set[index], SPRITE_X * j, SPRITE_Y * i);
 			}
 			j++;
 		}
@@ -79,8 +81,8 @@ void	wall_printer(all_data *data, void **image_set)
 	free_map(copy);
 }
 
-void	backgroud_layer(void **image_set, all_data *data)
+void	backgroud_layer(char *set, void **image_set, all_data *data)
 {
 	zero_printer(data, image_set);
-	wall_printer(data, image_set);
+	wall_exit_printer(set, data, image_set);
 }

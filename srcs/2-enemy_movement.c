@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_movement.c                                   :+:      :+:    :+:   */
+/*   2-enemy_movement.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 17:35:18 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:36:29 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	enemy_mouver(char **map, pos *p, int x, int y)
 {
 	if (ft_strchr("P", map[p->y + y][p->x + x]))
 	{
+		///finish game
 		ft_printf("You lose --enemy touched you--");
 		exit(0);
 	}
@@ -36,6 +37,7 @@ void	enemy_modifier(all_data *data, int clock, int frame_rate)
 	int		count;
 	enemy	zero;
 
+	enemy_direction(data->map.map, data);
 	ft_bzero(&zero, sizeof(enemy));
 	count = 0;
 	if (clock % frame_rate == 0)

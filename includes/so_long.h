@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 15:20:57 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:57:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "../libft/libft.h"
 # include "X.h"
 # include <fcntl.h>
-# include <mlx.h>
+// # include <mlx.h>
+#include "/usr/local/include/mlx.h"
 # include <stdlib.h>
 # include <time.h>
 # define WINDOW_X 2560
@@ -166,8 +167,7 @@ int				key_press(int keycode, all_data *data);
 
 void			images_generator(all_data *data);
 void			images_destroyer(image_info *img, void *mlx);
-void			simple_map_printer(void *mlx, void *mlx_win, void **image_set,
-					all_data *data);
+void			simple_map_printer(void **image_set, all_data *data);
 
 void			valid_path(map_check *check, char **map, int i);
 void			path_no_exit(map_check *check, char **map);
@@ -200,7 +200,10 @@ int				exit_free(void *param);
 
 void			player_mouver(pos p, int x, int y, all_data *data);
 void			player_modifier(all_data *data, int clock, int frame_rate);
-void			backgroud_layer(void **image_set, all_data *data);
+void			backgroud_layer(char *set, void **image_set, all_data *data);
 void			score_layer(void **image_set, all_data *data);
+void			player_layer(char *set, void **image_set, all_data *data);
+void	finish_game(all_data *data);
+
 
 #endif
