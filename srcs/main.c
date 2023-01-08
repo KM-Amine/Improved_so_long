@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 17:43:10 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:14:09 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int av, char **ac)
 	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x
 			* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
 	// image creation
-	images_generator(&data, data.mlx.mlx);
+	images_generator(&data);
 	//check for malloc !NULL and free before exit
 	// hooking
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 09:30:44 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:20:30 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,12 @@ typedef struct all_data
 	text_data	text;
 }				all_data;
 
+typedef struct timing
+{
+	int	clock;
+	int	framerate;
+}				timing;
+
 void			enemy_spawner(map_info *map);
 void			enemy_respawner(map_info *map, enemy *enemy);
 void			enemy_collector(all_data *data);
@@ -158,7 +164,7 @@ void			valid_path_handler(map_check *check, char **map);
 int				key_release(int keycode, all_data *data);
 int				key_press(int keycode, all_data *data);
 
-void			images_generator(all_data *data, void *mlx);
+void			images_generator(all_data *data);
 void			images_destroyer(image_info *img, void *mlx);
 void			simple_map_printer(void *mlx, void *mlx_win, void **image_set,
 					all_data *data);

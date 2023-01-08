@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 11:48:26 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:08:58 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,38 +45,42 @@ char	*score_creator(int i, char c)
 	return (str);
 }
 
-void	score_layer(char *set, void **image_set, all_data *data, void *mlx,
-		void *mlx_win)
+void	score_printer(int i, int j, all_data *data, void **image_set)
 {
-	int		j;
-	int		i;
 	int		mouvement;
 	char	*mvstr;
 	int		coins;
 
-	(void)set;
-	j = data->map.resolution.y;
-	i = 0;
 	mouvement = data->text.mouvement;
 	coins = data->text.coins;
-	mlx_clear_window(mlx, mlx_win);
-	mlx_put_image_to_window(mlx, mlx_win, image_set[7], i * SPRITE_X, j
-			* SPRITE_Y);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[9], (i
+			- 1) * SPRITE_X, j * SPRITE_Y);
+	mvstr = score_creator(mouvement, 'M');
+	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, SPRITE_X / 2, (j
+			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
+	mvstr = score_creator(coins, 'C');
+	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, i * SPRITE_X / 2, (j
+			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
+	free(mvstr);
+}
+
+void	score_layer(void **image_set, all_data *data)
+{
+	int	j;
+	int	i;
+
+	j = data->map.resolution.y;
+	i = 0;
+	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[7], i
+		* SPRITE_X, j * SPRITE_Y);
 	while (i < data->map.resolution.x)
 	{
-		mlx_put_image_to_window(mlx, mlx_win, image_set[8], i * SPRITE_X, j
-				* SPRITE_Y);
+		mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[8],
+			i * SPRITE_X, j * SPRITE_Y);
 		i++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, image_set[9], (i - 1) * SPRITE_X, j
-			* SPRITE_Y);
-	mvstr = score_creator(mouvement, 'M');
-	mlx_string_put(mlx, mlx_win, SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y / 3,
-			0x0000FFFF, mvstr);
-	mvstr = score_creator(coins, 'C');
-	mlx_string_put(mlx, mlx_win, i * SPRITE_X / 2, (j * SPRITE_Y) + SPRITE_Y
-			/ 3, 0x0000FFFF, mvstr);
-	free(mvstr);
+	score_printer(i, j, data, image_set);
 }
 
 void	backgroud_layer(char *set, void **image_set, map_info map, void *mlx,
@@ -97,7 +101,7 @@ void	backgroud_layer(char *set, void **image_set, map_info map, void *mlx,
 		{
 			index = ft_strchr(set, copy[i][j]) - set;
 			mlx_put_image_to_window(mlx, mlx_win, image_set[index], SPRITE_X
-					* j, SPRITE_Y * i);
+				* j, SPRITE_Y * i);
 			j++;
 		}
 		i++;
@@ -122,6 +126,7 @@ void	backgroud_layer(char *set, void **image_set, map_info map, void *mlx,
 	}
 	free_map(copy);
 }
+
 void	player_layer(char *set, void **image_set, map_info map, void *mlx,
 		void *mlx_win)
 {
@@ -159,9 +164,10 @@ void	player_layer(char *set, void **image_set, map_info map, void *mlx,
 void	simple_map_printer(void *mlx, void *mlx_win, void **image_set,
 		all_data *data)
 {
-	char *set = "01ECPGT";
+	char	*set;
 
-	score_layer(set, image_set, data, mlx, mlx_win);
+	set = "01ECPGT";
+	score_layer(image_set, data);
 	backgroud_layer(set, image_set, data->map, mlx, mlx_win);
 	player_layer(set, image_set, data->map, mlx, mlx_win);
 }
