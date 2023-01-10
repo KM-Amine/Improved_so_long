@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 14:23:15 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:25:09 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ char	*path_generator(int file, int dir, all_data *data)
 	char	*path;
 	char	*full;
 
-	file_path = NULL;
-	dir_path = NULL;
-	path = NULL;
-	full = NULL;
-	(void)data;
 	file_path = ft_itoa(file);
 	if (!file_path)
 		total_clean(data);

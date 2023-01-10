@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:00:18 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:15:19 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:26:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	valid_path(map_check *check, char **map, int b)
 
 void	valid_path_handler(map_check *check, char **map)
 {
-	char **copy1;
-	char **copy2;
-	map_check zero;
+	char		**copy1;
+	char		**copy2;
+	map_check	zero;
 
 	ft_bzero(&zero, sizeof(map_check));
 	copy1 = map_copy(map);

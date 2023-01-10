@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 14:38:49 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:24:35 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	player_layer(char *set, void **image_set, all_data *data)
 			{
 				index = ft_strchr(set, copy[i][j]) - set;
 				mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-						image_set[index], SPRITE_X * j, SPRITE_Y * i);
+					image_set[index], SPRITE_X * j, SPRITE_Y * i);
 			}
 			j++;
 		}

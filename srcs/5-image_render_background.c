@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:20:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 14:27:02 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:24:14 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	zero_printer(all_data *data, void **image_set)
 		while (copy[i][j])
 		{
 			mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-					image_set[background], SPRITE_X * j, SPRITE_Y * i);
+				image_set[background], SPRITE_X * j, SPRITE_Y * i);
 			j++;
 		}
 		i++;
@@ -76,7 +76,7 @@ void	wall_exit_printer(char *set, all_data *data, void **image_set)
 			{
 				index = ft_strchr(set, copy[i][j]) - set;
 				mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
-						image_set[index], SPRITE_X * j, SPRITE_Y * i);
+					image_set[index], SPRITE_X * j, SPRITE_Y * i);
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:14:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 14:38:19 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:24:26 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	score_printer(int i, int j, all_data *data)
 	coins = data->text.coins;
 	mvstr = score_creator(mouvement, 'M', data);
 	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, SPRITE_X / 2, (j
-				* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
+			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
 	free(mvstr);
 	mvstr = score_creator(coins, 'C', data);
 	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, i * SPRITE_X / 2, (j
-				* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
+			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
 	free(mvstr);
 }
 
@@ -69,14 +69,14 @@ void	score_layer(void **image_set, all_data *data)
 	i = 0;
 	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[7], i
-			* SPRITE_X, j * SPRITE_Y);
+		* SPRITE_X, j * SPRITE_Y);
 	while (i < data->map.resolution.x)
 	{
 		mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[8],
-				i * SPRITE_X, j * SPRITE_Y);
+			i * SPRITE_X, j * SPRITE_Y);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, image_set[9], (i
-				- 1) * SPRITE_X, j * SPRITE_Y);
+			- 1) * SPRITE_X, j * SPRITE_Y);
 	score_printer(i, j, data);
 }
