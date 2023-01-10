@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:49:30 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:08:18 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	render_frame(all_data *data)
 	static int	i;
 	static void	*image_set[50];
 
+	//exit here
 	if (i % 1 == 0)
 	{
 		map_modifier(data, i);
@@ -24,6 +25,7 @@ int	render_frame(all_data *data)
 		simple_map_printer(image_set, data);
 	}
 	i++;
+	total_clean(data);
 	return (0);
 }
 
@@ -37,16 +39,7 @@ int	exit_cross(all_data *data)
 // malloc free
 // if malloc returns NULL
 
-void	images_destroyer(image_info *img, void *mlx)
-{
-	int	i;
 
-	i = 0;
-	while (i < 4)
-	{
-		mlx_destroy_image(mlx, img[i].ptr);
-	}
-}
 
 //initialize data with 0
 void	data_intialisation(all_data *data, key *keys, enemy *enemies,
@@ -59,6 +52,7 @@ void	data_intialisation(all_data *data, key *keys, enemy *enemies,
 	data->enemy = enemies;
 	ft_bzero(img, sizeof(image_info) * 10);
 	data->img = img;
+	data->exit_status=0;
 }
 
 int	main(int av, char **ac)
@@ -98,8 +92,6 @@ int	main(int av, char **ac)
 	// return value of mlx functions
 	
 	// exiting
-	images_destroyer(data.img, data.mlx.mlx);
-	mlx_destroy_window(data.mlx.mlx, data.mlx.mlx);
-	free(data.mlx.mlx);
+	total_clean(&data);
 	return (0);
 }

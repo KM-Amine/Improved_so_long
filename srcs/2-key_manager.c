@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 09:16:56 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:53:37 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:17:37 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int	key_release(int keycode, all_data *data)
 		key_release_modifier(data, down);
 	if (keycode == A)
 		key_release_modifier(data, left);
+	if (keycode == ESC)
+		finish_game(data, 2);
 	return (0);
 }

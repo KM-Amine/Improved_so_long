@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 19:47:51 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:06:24 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct all_data
 	key			*keys;
 	enemy		*enemy;
 	text_data	text;
+	int			exit_status;
 }				all_data;
 
 typedef struct timing
@@ -166,7 +167,7 @@ int				key_release(int keycode, all_data *data);
 int				key_press(int keycode, all_data *data);
 
 void			images_generator(all_data *data);
-void			images_destroyer(image_info *img, void *mlx);
+void			images_destroyer(all_data *data);
 void			simple_map_printer(void **image_set, all_data *data);
 
 void			valid_path(map_check *check, char **map, int i);

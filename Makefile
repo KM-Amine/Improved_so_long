@@ -72,7 +72,6 @@ norm:
 
 
 $(NAME): $(LIBFT) $(OBJ)
-	@$(MAKE) -C libft
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 objs/%.o: srcs/%.c $(HEADER)
