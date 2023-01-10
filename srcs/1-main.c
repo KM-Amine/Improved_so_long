@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 13:23:55 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:41:48 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	data_intialisation(all_data *data, key *keys, enemy *enemies,
 	data->enemy = enemies;
 	ft_bzero(img, sizeof(image_info) * 10);
 	data->img = img;
-	data->exit_status=0;
+	data->exit_status = 0;
 }
 
 int	main(int av, char **ac)
@@ -73,6 +73,5 @@ int	main(int av, char **ac)
 // static functions
 // malloc free
 // if malloc returns NULL
-	// player is on top of coin
-	// return value of mlx functions
-	
+// player is on top of coin
+// return value of mlx functions

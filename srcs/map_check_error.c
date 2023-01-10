@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:43:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 18:02:04 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:16:23 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ map_info	map_checker(int av, char **ac)
 
 	if (av != 2)
 	{
-		ft_printf("Error\n invalid number of arguments");
+		ft_putstr_fd("Error\n invalid number of arguments", 2);
 		exit(EXIT_FAILURE);
 	}
 	file_name_checker(ac[1]);
@@ -53,7 +53,7 @@ void	file_name_checker(char *str)
 	ptr = str + len;
 	if (ft_strncmp(".ber", ptr, 4) != 0 || ft_strlen(str) < 5)
 	{
-		ft_printf("Error\nInvalid file extention\n");
+		ft_putstr_fd("Error\nInvalid file extention\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -61,7 +61,7 @@ void	file_name_checker(char *str)
 		fd = open(str, O_RDONLY);
 		if (fd == -1)
 		{
-			ft_printf("Error\nUnable to open file\n");
+			ft_putstr_fd("Error\nUnable to open file\n", 2);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -77,12 +77,12 @@ void	check_cordonates(char **map, pos *cordonates)
 	if (cordonates->x * SPRITE_X > WINDOW_X)
 	{
 		i = 1;
-		ft_printf("map x  is too large\n");
+		ft_putstr_fd("map x  is too large\n", 2);
 	}
 	if ((cordonates->y + 1) * SPRITE_Y > WINDOW_Y)
 	{
 		i = 1;
-		ft_printf("map y  is too large\n");
+		ft_putstr_fd("map y  is too large\n", 2);
 	}
 	if (i == 1)
 	{
@@ -95,19 +95,19 @@ void	check_cordonates(char **map, pos *cordonates)
 
 void	error_exit_function(map_check *check)
 {
-	ft_printf("Error\n");
-	ft_printf("Invalid map :\n");
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Invalid map :\n", 2);
 	if (check->rectangular == -1)
-		ft_printf("- map is not rectangular\n");
+		ft_putstr_fd("- map is not rectangular\n", 2);
 	if (check->stranger_characters == -1)
-		ft_printf("- map has a stranger character\n");
+		ft_putstr_fd("- map has a stranger character\n", 2);
 	if (check->minimum_characters == -1)
-		ft_printf("- wronge number of coins ,exit and start\n");
+		ft_putstr_fd("- wronge number of coins ,exit and start\n", 2);
 	if (check->closed == -1)
-		ft_printf("- the map is not closed by walls\n");
+		ft_putstr_fd("- the map is not closed by walls\n", 2);
 	if (check->with_exit == -1)
-		ft_printf("- unvalid path :the exit can't be reached\n");
+		ft_putstr_fd("- unvalid path :the exit can't be reached\n", 2);
 	if (check->no_exit == -1)
-		ft_printf("- unvalid path :the coins can't be reached\n");
+		ft_putstr_fd("- unvalid path :the coins can't be reached\n", 2);
 	exit(EXIT_FAILURE);
 }

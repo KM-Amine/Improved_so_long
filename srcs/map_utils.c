@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:12 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 18:02:26 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:14:51 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ char	**read_map(char *file)
 		str = get_next_line(fd);
 		i++;
 	}
+	free(str);
 	close(fd);
 	map = (char **)ft_calloc(i + 1, sizeof(char *));
 	if (!map)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	fd = open(file, O_RDONLY);
 	j = 0;
 	while (j < i)
@@ -43,14 +44,14 @@ char	**read_map(char *file)
 		if (!str)
 		{
 			free_map(map);
-			return (0);
+			exit(EXIT_FAILURE);
 		}
 		map[j] = ft_strtrim(str, "\n");
 		if (!map[j])
 		{
 			free_map(map);
 			free(str);
-			return (NULL);
+			exit(EXIT_FAILURE);
 		}
 		free(str);
 		j++;
@@ -93,22 +94,6 @@ char	**map_copy(char **map)
 		j++;
 	}
 	return (copy);
-}
-
-void	print_map(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i])
-		i++;
-	while (j < i)
-	{
-		ft_printf("%s\n", map[j]);
-		j++;
-	}
 }
 
 void	get_dimentions(char **map, pos *cordonates)

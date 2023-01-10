@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:00:18 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/04 16:08:20 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:15:19 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	contamination(char **map, pos p, int *count, char *set)
 		map[p.y - 1][p.x] = 'Z';
 	}
 }
-
-///////////////////
 
 int	exit_check(char **map, int i)
 {
