@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:12 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:36:51 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:55:23 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**map_copy(char **map)
 	return (copy);
 }
 
-void	get_dimentions(char **map, pos *cordonates)
+void	get_dimentions(char **map, t_pos *cordonates)
 {
 	cordonates->y = 0;
 	cordonates->x = ft_strlen(map[0]);
@@ -112,7 +112,7 @@ void	get_dimentions(char **map, pos *cordonates)
 	}
 }
 
-void	get_cordonates(char **map, pos *cordonates, char c)
+void	get_cordonates(char **map, t_pos *cordonates, char c)
 {
 	int		i;
 	char	*ptr;

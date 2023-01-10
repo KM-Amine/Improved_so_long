@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_direction.c                                  :+:      :+:    :+:   */
+/*   2-enemy_direction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:48:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 15:48:57 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:47:17 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	extreme_checker(all_data *data, char **map, enemy *en, int count)
+void	extreme_checker(t_all_data *data, char **map, t_enemy *en, int count)
 {
 	if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]))
 		enemy_respawner(&(data->map), &en[count]);
@@ -24,7 +24,7 @@ void	extreme_checker(all_data *data, char **map, enemy *en, int count)
 		enemy_respawner(&(data->map), &en[count]);
 }
 
-void	up_direction(char **map, all_data *data, enemy *en, int count)
+void	up_direction(char **map, t_all_data *data, t_enemy *en, int count)
 {
 	if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1])
 		|| ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1]))
@@ -35,7 +35,7 @@ void	up_direction(char **map, all_data *data, enemy *en, int count)
 		en[count].direction = DOWNRIGHT;
 }
 
-void	right_direction(char **map, all_data *data, enemy *en, int count)
+void	right_direction(char **map, t_all_data *data, t_enemy *en, int count)
 {
 	if (ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x - 1])
 		|| ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1]))
@@ -46,7 +46,7 @@ void	right_direction(char **map, all_data *data, enemy *en, int count)
 		en[count].direction = DOWNLEFT;
 }
 
-void	down_direction(char **map, all_data *data, enemy *en, int count)
+void	down_direction(char **map, t_all_data *data, t_enemy *en, int count)
 {
 	if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x - 1])
 		|| ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1]))
@@ -57,7 +57,7 @@ void	down_direction(char **map, all_data *data, enemy *en, int count)
 		en[count].direction = UPLEFT;
 }
 
-void	left_direction(char **map, all_data *data, enemy *en, int count)
+void	left_direction(char **map, t_all_data *data, t_enemy *en, int count)
 {
 	if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x + 1])
 		|| ft_strchr("1EGCT", map[en[count].p.y + 1][en[count].p.x + 1]))

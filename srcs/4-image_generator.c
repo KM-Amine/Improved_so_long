@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:51:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:52:17 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:51:16 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	first_part(fpath	*p, all_data *data, int dir, int file)
+void	first_part(t_fpath	*p, t_all_data *data, int dir, int file)
 {
 	p->file_path = ft_itoa(file);
 	if (!p->file_path)
@@ -32,7 +32,7 @@ void	first_part(fpath	*p, all_data *data, int dir, int file)
 	}
 }
 
-void	second_part(fpath	*p, all_data *data)
+void	second_part(t_fpath	*p, t_all_data *data)
 {
 	p->path = ft_strjoin(p->full, p->file_path);
 	if (!p->path)
@@ -56,11 +56,11 @@ void	second_part(fpath	*p, all_data *data)
 	free(p->path);
 }
 
-char	*path_generator(int file, int dir, all_data *data)
+char	*path_generator(int file, int dir, t_all_data *data)
 {
-	fpath	p;
+	t_fpath	p;
 
-	ft_bzero(&p, sizeof(fpath));
+	ft_bzero(&p, sizeof(t_fpath));
 	first_part(&p, data, dir, file);
 	p.full = ft_strjoin(p.path, "/");
 	if (!p.full)
@@ -75,7 +75,7 @@ char	*path_generator(int file, int dir, all_data *data)
 	return (p.full);
 }
 
-void	single_image_creator(int i, int j, all_data *data)
+void	single_image_creator(int i, int j, t_all_data *data)
 {
 	char	*path;
 
@@ -95,7 +95,7 @@ void	single_image_creator(int i, int j, all_data *data)
 	free(path);
 }
 
-void	images_generator(all_data *data)
+void	images_generator(t_all_data *data)
 {
 	int	i;
 	int	j;

@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 12:38:33 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 18:58:15 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:48:44 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	enemy_mouver(all_data *data, pos *p, int x, int y)
+void	enemy_mouver(t_all_data *data, t_pos *p, int x, int y)
 {
 	if (ft_strchr("P", data->map.map[p->y + y][p->x + x]))
 		finish_game(data, 1);
@@ -25,17 +25,17 @@ void	enemy_mouver(all_data *data, pos *p, int x, int y)
 	}
 }
 
-void	enemy_modifier(all_data *data, int clock, int frame_rate)
+void	enemy_modifier(t_all_data *data, int clock, int frame_rate)
 {
 	int		count;
-	enemy	zero;
+	t_enemy	zero;
 
 	enemy_direction(data->map.map, data);
-	ft_bzero(&zero, sizeof(enemy));
+	ft_bzero(&zero, sizeof(t_enemy));
 	count = 0;
 	if (clock % frame_rate == 0)
 	{
-		while (ft_memcmp(&(data->enemy[count]), &zero, sizeof(enemy)))
+		while (ft_memcmp(&(data->enemy[count]), &zero, sizeof(t_enemy)))
 		{
 			if (data->enemy[count].direction == DOWNRIGHT)
 				enemy_mouver(data, &data->enemy[count].p, 1, 1);
@@ -50,16 +50,16 @@ void	enemy_modifier(all_data *data, int clock, int frame_rate)
 	}
 }
 
-void	enemy_direction(char **map, all_data *data)
+void	enemy_direction(char **map, t_all_data *data)
 {
-	enemy	*en;
+	t_enemy	*en;
 	int		count;
-	enemy	zero;
+	t_enemy	zero;
 
-	ft_bzero(&zero, sizeof(enemy));
+	ft_bzero(&zero, sizeof(t_enemy));
 	count = 0;
 	en = data->enemy;
-	while (ft_memcmp(&en[count], &zero, sizeof(enemy)))
+	while (ft_memcmp(&en[count], &zero, sizeof(t_enemy)))
 	{
 		if (ft_strchr("1EGCT", map[en[count].p.y - 1][en[count].p.x]))
 			up_direction(map, data, en, count);

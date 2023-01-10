@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 14:41:48 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:46:16 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	render_frame(all_data *data)
+int	render_frame(t_all_data *data)
 {
 	static int	i;
 	static void	*image_set[50];
@@ -27,31 +27,31 @@ int	render_frame(all_data *data)
 	return (0);
 }
 
-int	exit_cross(all_data *data)
+int	exit_cross(t_all_data *data)
 {
 	finish_game(data, 4);
 	return (0);
 }
 
-void	data_intialisation(all_data *data, key *keys, enemy *enemies,
-		image_info *img)
+void	data_intialisation(t_all_data *data, t_key *keys, t_enemy *enemies,
+		t_image_info *img)
 {
 	data->keys = keys;
-	ft_bzero(keys, sizeof(key) * 5);
-	data->text = (text_data){0, 0};
-	ft_bzero(enemies, sizeof(enemy) * 20);
+	ft_bzero(keys, sizeof(t_key) * 5);
+	data->text = (t_text_data){0, 0};
+	ft_bzero(enemies, sizeof(t_enemy) * 20);
 	data->enemy = enemies;
-	ft_bzero(img, sizeof(image_info) * 10);
+	ft_bzero(img, sizeof(t_image_info) * 10);
 	data->img = img;
 	data->exit_status = 0;
 }
 
 int	main(int av, char **ac)
 {
-	all_data	data;
-	key			keys[5];
-	enemy		enemies[20];
-	image_info	img[10];
+	t_all_data		data;
+	t_key			keys[5];
+	t_enemy			enemies[20];
+	t_image_info	img[10];
 
 	data.map = map_checker(av, ac);
 	data_intialisation(&data, keys, enemies, img);
@@ -70,8 +70,3 @@ int	main(int av, char **ac)
 	return (0);
 }
 
-// static functions
-// malloc free
-// if malloc returns NULL
-// player is on top of coin
-// return value of mlx functions

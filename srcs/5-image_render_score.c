@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:14:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:53:31 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:51:44 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-char	*score_creator(int i, char c, all_data *data)
+char	*score_creator(int i, char c, t_all_data *data)
 {
 	char	*tmp;
 	char	*str;
@@ -41,7 +41,7 @@ char	*score_creator(int i, char c, all_data *data)
 	return (free(tmp), str);
 }
 
-void	score_printer(int i, int j, all_data *data)
+void	score_printer(int i, int j, t_all_data *data)
 {
 	int		mouvement;
 	char	*mvstr;
@@ -59,7 +59,7 @@ void	score_printer(int i, int j, all_data *data)
 	free(mvstr);
 }
 
-void	score_layer(void **image_set, all_data *data)
+void	score_layer(void **image_set, t_all_data *data)
 {
 	int	j;
 	int	i;

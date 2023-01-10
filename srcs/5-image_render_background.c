@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:20:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:24:14 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:51:32 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_map_data(char **map, char c, char *set)
 	}
 }
 
-void	zero_printer(all_data *data, void **image_set)
+void	zero_printer(t_all_data *data, void **image_set)
 {
 	char	**copy;
 	int		i;
@@ -56,7 +56,7 @@ void	zero_printer(all_data *data, void **image_set)
 	free_map(copy);
 }
 
-void	wall_exit_printer(char *set, all_data *data, void **image_set)
+void	wall_exit_printer(char *set, t_all_data *data, void **image_set)
 {
 	int		i;
 	int		j;
@@ -85,7 +85,7 @@ void	wall_exit_printer(char *set, all_data *data, void **image_set)
 	free_map(copy);
 }
 
-void	backgroud_layer(char *set, void **image_set, all_data *data)
+void	backgroud_layer(char *set, void **image_set, t_all_data *data)
 {
 	zero_printer(data, image_set);
 	wall_exit_printer(set, data, image_set);

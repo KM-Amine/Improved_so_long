@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_manager.c                                    :+:      :+:    :+:   */
+/*   2-enemy_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:05:51 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/07 15:23:08 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:47:39 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	enemy_spawner(map_info *map)
+void	enemy_spawner(t_map_info *map)
 {
 	int	x;
 	int	y;
@@ -33,7 +33,7 @@ void	enemy_spawner(map_info *map)
 	}
 }
 
-void	enemy_respawner(map_info *map, enemy *enemy)
+void	enemy_respawner(t_map_info *map, t_enemy *enemy)
 {
 	int	x;
 	int	y;
@@ -58,7 +58,7 @@ void	enemy_respawner(map_info *map, enemy *enemy)
 	}
 }
 
-void	enemy_collector(all_data *data)
+void	enemy_collector(t_all_data *data)
 {
 	char	**map;
 	int		j;

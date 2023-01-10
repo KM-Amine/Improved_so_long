@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:24:35 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:51:55 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	simple_map_printer(void **image_set, all_data *data)
+void	simple_map_printer(void **image_set, t_all_data *data)
 {
 	char	*set;
 
@@ -22,7 +22,7 @@ void	simple_map_printer(void **image_set, all_data *data)
 	player_layer(set, image_set, data);
 }
 
-void	player_layer(char *set, void **image_set, all_data *data)
+void	player_layer(char *set, void **image_set, t_all_data *data)
 {
 	char	**copy;
 	int		i;

@@ -6,20 +6,20 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:18:55 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:49:51 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	map_modifier(all_data *data, int clock)
+void	map_modifier(t_all_data *data, int clock)
 {
 	enemy_modifier(data, clock, 50);
 	player_modifier(data, clock, 5);
 	finish_game(data, 0);
 }
 
-void	images_destroyer(all_data *data)
+void	images_destroyer(t_all_data *data)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	images_destroyer(all_data *data)
 	}
 }
 
-void	total_clean(all_data *data)
+void	total_clean(t_all_data *data)
 {
 	free_map(data->map.map);
 	images_destroyer(data);

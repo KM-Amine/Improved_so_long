@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:00:18 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:31:55 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:55:01 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	contamination(char **map, pos p, int *count, char *set)
+void	contamination(char **map, t_pos p, int *count, char *set)
 {
 	if (ft_strchr(set, map[p.y][p.x + 1]) != 0)
 	{
@@ -36,7 +36,7 @@ void	contamination(char **map, pos p, int *count, char *set)
 	}
 }
 
-int	go_out_checker(int i, char **map, pos p)
+int	go_out_checker(int i, char **map, t_pos p)
 {
 	if (i == 1)
 	{
@@ -53,11 +53,11 @@ int	go_out_checker(int i, char **map, pos p)
 
 int	exit_check(char **map, int i)
 {
-	char_cont	c;
-	pos			p;
+	t_char_cont	c;
+	t_pos		p;
 	int			len;
 
-	ft_bzero(&c, sizeof(char_cont));
+	ft_bzero(&c, sizeof(t_char_cont));
 	p.x = 0;
 	while (map[p.x])
 	{
@@ -74,7 +74,7 @@ int	exit_check(char **map, int i)
 	return (1);
 }
 
-void	contamination_process(int b, char **map, int	*end_counter, pos	p)
+void	contamination_process(int b, char **map, int	*end_counter, t_pos	p)
 {
 	if (map[p.y][p.x] == 'P')
 		map[p.y][p.x] = 'Z';
@@ -87,10 +87,10 @@ void	contamination_process(int b, char **map, int	*end_counter, pos	p)
 	}
 }
 
-void	valid_path(map_check *check, char **map, int b)
+void	valid_path(t_map_check *check, char **map, int b)
 {
-	pos	p;
-	int	end_counter;
+	t_pos	p;
+	int		end_counter;
 
 	end_counter = 0;
 	while (1)
@@ -116,7 +116,7 @@ void	valid_path(map_check *check, char **map, int b)
 		check->with_exit = -1;
 }
 
-void	second_handler(char	**copy1, char	**copy2, map_check *check, char **map)
+void	second_handler(char	**copy1, char	**copy2, t_map_check *check, char **map)
 {
 	copy2 = map_copy(copy1);
 	if (!copy2)
@@ -130,14 +130,14 @@ void	second_handler(char	**copy1, char	**copy2, map_check *check, char **map)
 	free_map(copy2);
 }
 
-void	valid_path_handler(map_check *check, char **map)
+void	valid_path_handler(t_map_check *check, char **map)
 {
 	char		**copy1;
 	char		**copy2;
-	map_check	zero;
+	t_map_check	zero;
 
 	copy2 = NULL;
-	ft_bzero(&zero, sizeof(map_check));
+	ft_bzero(&zero, sizeof(t_map_check));
 	copy1 = map_copy(map);
 	if (!copy1)
 	{
@@ -146,7 +146,7 @@ void	valid_path_handler(map_check *check, char **map)
 	}
 	valid_path(check, copy1, 0);
 	second_handler(copy1, copy2, check, map);
-	if (ft_memcmp(check, &zero, sizeof(map_check)) != 0)
+	if (ft_memcmp(check, &zero, sizeof(t_map_check)) != 0)
 	{
 		free_map(map);
 		error_exit_function(check);

@@ -6,15 +6,15 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:43:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 15:16:23 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:52:35 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-map_info	map_checker(int av, char **ac)
+t_map_info	map_checker(int av, char **ac)
 {
-	map_info	map;
+	t_map_info	map;
 
 	if (av != 2)
 	{
@@ -33,9 +33,9 @@ map_info	map_checker(int av, char **ac)
 
 void	map_error_handling(char **map)
 {
-	map_check	check;
+	t_map_check	check;
 
-	ft_bzero(&check, sizeof(map_check));
+	ft_bzero(&check, sizeof(t_map_check));
 	map_structure(&check, map);
 	valid_path_handler(&check, map);
 	ft_printf("Your map is valid\n");
@@ -68,7 +68,7 @@ void	file_name_checker(char *str)
 	close(fd);
 }
 
-void	check_cordonates(char **map, pos *cordonates)
+void	check_cordonates(char **map, t_pos *cordonates)
 {
 	int	i;
 
@@ -93,7 +93,7 @@ void	check_cordonates(char **map, pos *cordonates)
 		ft_printf("Size screen is valid\n");
 }
 
-void	error_exit_function(map_check *check)
+void	error_exit_function(t_map_check *check)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("Invalid map :\n", 2);

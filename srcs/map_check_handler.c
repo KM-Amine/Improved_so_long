@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:12:36 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:53:26 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	rectangular_map(map_check *check, char **map)
+void	rectangular_map(t_map_check *check, char **map)
 {
 	int	i;
 	int	invalid;
@@ -32,9 +32,9 @@ void	rectangular_map(map_check *check, char **map)
 		check->rectangular = -1;
 }
 
-void	stranger_characters(map_check *check, char **map)
+void	stranger_characters(t_map_check *check, char **map)
 {
-	pos	p;
+	t_pos	p;
 
 	p.x = 0;
 	while (map[p.x])
@@ -53,13 +53,13 @@ void	stranger_characters(map_check *check, char **map)
 	}
 }
 
-void	minimum_characters(map_check *check, char **map)
+void	minimum_characters(t_map_check *check, char **map)
 {
-	char_cont	c;
-	pos			p;
+	t_char_cont	c;
+	t_pos		p;
 	int			len;
 
-	ft_bzero(&c, sizeof(char_cont));
+	ft_bzero(&c, sizeof(t_char_cont));
 	p.x = 0;
 	while (map[p.x])
 	{
@@ -81,7 +81,7 @@ void	minimum_characters(map_check *check, char **map)
 		check->minimum_characters = -1;
 }
 
-void	top_limits_checker( map_check *check, char **map)
+void	top_limits_checker( t_map_check *check, char **map)
 {
 	int	i;
 	int	j;
@@ -107,7 +107,7 @@ void	top_limits_checker( map_check *check, char **map)
 	}
 }
 
-void	closed_map(map_check *check, char **map)
+void	closed_map(t_map_check *check, char **map)
 {
 	int	i;
 	int	len;
@@ -130,16 +130,16 @@ void	closed_map(map_check *check, char **map)
 	}
 }
 
-void	map_structure(map_check *check, char **map)
+void	map_structure(t_map_check *check, char **map)
 {
-	map_check	zero;
+	t_map_check	zero;
 
-	ft_bzero(&zero, sizeof(map_check));
+	ft_bzero(&zero, sizeof(t_map_check));
 	rectangular_map(check, map);
 	stranger_characters(check, map);
 	minimum_characters(check, map);
 	closed_map(check, map);
-	if (ft_memcmp(check, &zero, sizeof(map_check)) != 0)
+	if (ft_memcmp(check, &zero, sizeof(t_map_check)) != 0)
 	{
 		free_map(map);
 		error_exit_function(check);

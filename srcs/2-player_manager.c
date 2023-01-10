@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:18:29 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:18:59 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:49:32 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	player_mouver(pos p, int x, int y, all_data *data)
+void	player_mouver(t_pos p, int x, int y, t_all_data *data)
 {
 	static int	i;
 
@@ -30,9 +30,9 @@ void	player_mouver(pos p, int x, int y, all_data *data)
 	}
 }
 
-void	player_modifier(all_data *data, int clock, int frame_rate)
+void	player_modifier(t_all_data *data, int clock, int frame_rate)
 {
-	pos	p;
+	t_pos	p;
 
 	if (clock % frame_rate == 0)
 	{
@@ -50,7 +50,7 @@ void	player_modifier(all_data *data, int clock, int frame_rate)
 
 void	set_exit(char **map)
 {
-	pos	p;
+	t_pos	p;
 
 	get_cordonates(map, &p, 'E');
 	if (p.x == -1)
@@ -58,7 +58,7 @@ void	set_exit(char **map)
 	map[p.x][p.y] = 'G';
 }
 
-void	win_checker(all_data *data)
+void	win_checker(t_all_data *data)
 {
 	char	**map;
 
@@ -75,7 +75,7 @@ void	win_checker(all_data *data)
 	}
 }
 
-void	finish_game(all_data *data, int i)
+void	finish_game(t_all_data *data, int i)
 {
 	win_checker(data);
 	if (i == 1)

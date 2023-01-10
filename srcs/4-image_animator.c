@@ -6,13 +6,13 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:52:20 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:50:21 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	image_animation(int element, timing t, image_info *img,
+void	image_animation(int element, t_timing t, t_image_info *img,
 		void **image_set)
 {
 	static int	count[10];
@@ -29,9 +29,9 @@ void	image_animation(int element, timing t, image_info *img,
 	}
 }
 
-void	image_modifier(image_info *img, void **image_set)
+void	image_modifier(t_image_info *img, void **image_set)
 {
-	static timing	t;
+	static t_timing	t;
 	int				i;
 
 	i = 0;
