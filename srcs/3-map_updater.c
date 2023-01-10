@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:54:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 13:01:25 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:10:38 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,11 @@ void	images_destroyer(all_data *data)
 /////free and exit and !NULL
 void	total_clean(all_data *data)
 {
-	if (data->exit_status == -1)
-	{
 		free_map(data->map.map);
 		images_destroyer(data);
 		mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
 		mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
 		free(data->mlx.mlx);
 		exit(0);
-	}
 }
 /////free and exit and !NULL

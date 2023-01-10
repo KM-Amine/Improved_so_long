@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 09:55:06 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 13:05:38 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:14:21 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 char	*path_generator(int file, int dir,all_data *data)
 {
-	char	*file_path;
-	char	*dir_path;
-	char	*path;
-	char	*full;
+	char	*file_path= NULL;
+	char	*dir_path = NULL;
+	char	*path= NULL;
+	char	*full= NULL;
 
+	(void)data;
 	file_path = ft_itoa(file);
 	if (!file_path)
-		total_clean(data);
+		//total_clean(data);
 	dir_path = ft_itoa(dir);
 	if (!dir_path)
 	{
 		free(file_path);
-		total_clean(data);
+		//total_clean(data);
 	}
 	path = ft_strjoin("./images/", dir_path);
 	if (!path)
 	{
 		free(file_path);
 		free(dir_path);
-		total_clean(data);
+		//total_clean(data);
 	}
 	full = ft_strjoin(path, "/");
 	if (!full)
@@ -41,7 +42,7 @@ char	*path_generator(int file, int dir,all_data *data)
 		free(file_path);
 		free(dir_path);
 		free(path);
-		total_clean(data);
+		//total_clean(data);
 	}
 	free(path);
 	path = ft_strjoin(full, file_path);
@@ -50,7 +51,7 @@ char	*path_generator(int file, int dir,all_data *data)
 		free(file_path);
 		free(full);
 		free(dir_path);
-		total_clean(data);
+		//total_clean(data);
 	}
 	free(full);
 	full = ft_strjoin(path, ".xpm");
@@ -59,7 +60,7 @@ char	*path_generator(int file, int dir,all_data *data)
 		free(file_path);
 		free(path);
 		free(dir_path);
-		total_clean(data);
+		//total_clean(data);
 	}
 	free(file_path);
 	free(dir_path);
