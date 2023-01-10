@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 18:02:12 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:21:31 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	render_frame(t_all_data *data)
 	static int	i;
 	static void	*image_set[50];
 
+	(void)data;
+	(void)image_set;
 	if (i % 1 == 0)
 	{
 		map_modifier(data, i);

@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:51:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:51:16 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:22:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	first_part(t_fpath	*p, t_all_data *data, int dir, int file)
 		free(p->file_path);
 		total_clean(data);
 	}
-	p->path = ft_strjoin("./images/", p->dir_path);
+	p->path = ft_strjoin("./textures/", p->dir_path);
 	if (!p->path)
 	{
 		free(p->file_path);

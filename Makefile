@@ -53,7 +53,7 @@ OBJ = $(SRC:srcs/%.c=objs/%.o)
 OBJDIR = objs
 
 all:  $(NAME)
-	./$(NAME) map.ber
+	./$(NAME) map2.ber
 #	^
 #	|
 ######	Delete this shit!!!!!!!!######
