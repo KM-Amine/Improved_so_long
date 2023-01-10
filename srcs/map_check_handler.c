@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:53:26 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:57:19 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,21 +127,5 @@ void	closed_map(t_map_check *check, char **map)
 		if (map[i][len] != '1')
 			check->closed = -1;
 		i++;
-	}
-}
-
-void	map_structure(t_map_check *check, char **map)
-{
-	t_map_check	zero;
-
-	ft_bzero(&zero, sizeof(t_map_check));
-	rectangular_map(check, map);
-	stranger_characters(check, map);
-	minimum_characters(check, map);
-	closed_map(check, map);
-	if (ft_memcmp(check, &zero, sizeof(t_map_check)) != 0)
-	{
-		free_map(map);
-		error_exit_function(check);
 	}
 }

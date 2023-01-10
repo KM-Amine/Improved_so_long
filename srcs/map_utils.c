@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:12 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:55:23 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:59:17 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,47 +110,4 @@ void	get_dimentions(char **map, t_pos *cordonates)
 	{
 		cordonates->y++;
 	}
-}
-
-void	get_cordonates(char **map, t_pos *cordonates, char c)
-{
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	cordonates->x = -1;
-	cordonates->y = -1;
-	while (map[i])
-	{
-		ptr = ft_strchr(map[i], c);
-		if (ptr != NULL)
-		{
-			cordonates->y = i;
-			cordonates->x = ptr - map[i];
-			break ;
-		}
-		i++;
-	}
-}
-
-int	elment_counter(char **map, char c)
-{
-	int	i;
-	int	j;
-	int	counter;
-
-	counter = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == c)
-				counter++;
-			j++;
-		}
-		i++;
-	}
-	return (counter);
 }

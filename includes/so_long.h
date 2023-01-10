@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 17:44:08 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:01:56 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,9 @@ void				score_layer(void **image_set, t_all_data *data);
 void				player_layer(char *set, void **image_set, t_all_data *data);
 void				finish_game(t_all_data *data, int i);
 void				total_clean(t_all_data *data);
+void				rectangular_map(t_map_check *check, char **map);
+void				stranger_characters(t_map_check *check, char **map);
+void				minimum_characters(t_map_check *check, char **map);
+void				closed_map(t_map_check *check, char **map);
 
 #endif
