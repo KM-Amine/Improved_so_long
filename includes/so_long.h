@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:49 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 18:01:56 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:35:02 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,13 @@
 # include "X.h"
 # include <fcntl.h>
 # include <mlx.h>
-//#include "/usr/local/include/mlx.h"
 # include <stdlib.h>
 # include <time.h>
 # define WINDOW_X 2560
 # define WINDOW_Y 1440
 
-//osascript -e 'tell application "Finder" to get bounds of window of desktop'
-// display resolution
-
 # define SPRITE_X 64
 # define SPRITE_Y 64
-
-// music librrary in /usr/local/include
-// or system("afplay /Users/mkhellou/Downloads/lifelike-126735.mp3");
 
 # define D 2
 # define S 1

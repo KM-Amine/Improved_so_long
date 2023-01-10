@@ -1,10 +1,10 @@
-NAME = so_long_bonus
+NAME = so_long
+BNAME = so_long_bonus
 CC = cc
 AR = ar rcs
 CFLAGS = -Wall -Wextra -Werror -I ./includes 
 RM = rm -rf
 HEADER  = includes/so_long.h
-
 
 LFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a 
@@ -50,30 +50,34 @@ LOBJ = $(LSRC:%.c=libft/%.o)
 
 SRC = $(wildcard srcs/*.c)
 OBJ = $(SRC:srcs/%.c=objs/%.o)
+
+BSRC = 
+BOBJ = 
+
 OBJDIR = objs
+BOBJDIR = bobjs
 
 all:  $(NAME)
-	./$(NAME) map2.ber
-#	^
-#	|
-######	Delete this shit!!!!!!!!######
+
+# #	^
+# #	|
+# ######	Delete this shit!!!!!!!!######
 fgit :
 	./git.sh
 #	^
 #	|
-######	Delete this shit!!!!!!!!######
-norm:
-	bash ~/nor.sh ./**/*.c ./**/*.h
-#^
-#|
-######	Delete this shit!!!!!!!!######
-#	$(CC) $(CFLAGS) libft/libft.a $(OBJ) -lmlx -lXext -lX11 -o $(NAME)
+# ######	Delete this shit!!!!!!!!######
+# norm:
+# 	bash ~/nor.sh ./**/*.c ./**/*.h
+# #^
+# #|
+# ######	Delete this shit!!!!!!!!######
+# #	$(CC) $(CFLAGS) libft/libft.a $(OBJ) -lmlx -lXext -lX11 -o $(NAME)
 
 
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
 objs/%.o: srcs/%.c $(HEADER)
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
@@ -83,6 +87,13 @@ $(LIBFT) : $(LOBJ)
 libft/%.o: libft/%.c
 	@$(CC) $(LFLAGS) -c $< -o $@
 
+bonus : $(LIBFT) $(BOBJ)
+	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(BNAME)
+
+bobjs/%.o: bsrcs/%.c $(HEADER)
+	@mkdir -p $(BOBJDIR)
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
 clean:
 	@$(RM) $(OBJDIR)
 	@$(MAKE) fclean -C libft
@@ -90,5 +101,4 @@ fclean: clean
 	@$(RM) $(CLIENT) $(SERVER) $(NAME)
 	@echo "\033[1;32m ----Project cleaned----- \033[0m"
 re: fclean all
-
 .PHONY: all clean fclean re bonus
