@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:17 by mkhellou          #+#    #+#             */
-/*   Updated: 2022/12/10 19:41:04 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:12:36 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	minimum_characters(map_check *check, char **map)
 		check->minimum_characters = -1;
 }
 
-void	closed_map(map_check *check, char **map)
+void	top_limits_checker( map_check *check, char **map)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = 0;
+	j = 0;
 	while (map[0][i])
 	{
 		if (map[0][i] != '1')
@@ -105,6 +105,14 @@ void	closed_map(map_check *check, char **map)
 			check->closed = -1;
 		i++;
 	}
+}
+
+void	closed_map(map_check *check, char **map)
+{
+	int	i;
+	int	len;
+
+	top_limits_checker(check, map);
 	i = 0;
 	while (map[i])
 	{

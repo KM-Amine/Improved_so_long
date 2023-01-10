@@ -6,37 +6,16 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:39:12 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:14:51 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:36:51 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-char	**read_map(char *file)
+void	map_creator(char	**map, int i, char *str, int fd)
 {
-	char	*str;
-	int		fd;
-	int		i;
-	char	**map;
-	int		j;
+	int	j;
 
-	i = 0;
-	fd = open(file, O_RDONLY);
-	str = get_next_line(fd);
-	if (!str)
-		return (0);
-	while (str != NULL)
-	{
-		free(str);
-		str = get_next_line(fd);
-		i++;
-	}
-	free(str);
-	close(fd);
-	map = (char **)ft_calloc(i + 1, sizeof(char *));
-	if (!map)
-		exit(EXIT_FAILURE);
-	fd = open(file, O_RDONLY);
 	j = 0;
 	while (j < i)
 	{
@@ -56,6 +35,33 @@ char	**read_map(char *file)
 		free(str);
 		j++;
 	}
+}
+
+char	**read_map(char *file)
+{
+	char	*str;
+	int		fd;
+	int		i;
+	char	**map;
+
+	i = 0;
+	fd = open(file, O_RDONLY);
+	str = get_next_line(fd);
+	if (!str)
+		return (0);
+	while (str != NULL)
+	{
+		free(str);
+		str = get_next_line(fd);
+		i++;
+	}
+	free(str);
+	close(fd);
+	map = (char **)ft_calloc(i + 1, sizeof(char *));
+	if (!map)
+		exit(EXIT_FAILURE);
+	fd = open(file, O_RDONLY);
+	map_creator(map, i, str, fd);
 	close(fd);
 	return (map);
 }

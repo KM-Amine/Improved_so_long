@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:14:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:24:26 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:53:31 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ char	*score_creator(int i, char c, all_data *data)
 			total_clean(data);
 		}
 	}
-	free(tmp);
-	return (str);
+	return (free(tmp), str);
 }
 
 void	score_printer(int i, int j, all_data *data)

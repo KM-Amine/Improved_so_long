@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:00:18 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 16:26:02 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:31:55 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ void	contamination(char **map, pos p, int *count, char *set)
 	}
 }
 
+int	go_out_checker(int i, char **map, pos p)
+{
+	if (i == 1)
+	{
+		if (ft_strchr("EPC", map[p.x][p.y]) != 0)
+			return (-1);
+	}
+	else if (i == 0)
+	{
+		if (ft_strchr("PC", map[p.x][p.y]) != 0)
+			return (-1);
+	}
+	return (1);
+}
+
 int	exit_check(char **map, int i)
 {
 	char_cont	c;
@@ -50,21 +65,26 @@ int	exit_check(char **map, int i)
 		len = ft_strlen(map[p.x]);
 		while (p.y < len)
 		{
-			if (i == 1)
-			{
-				if (ft_strchr("EPC", map[p.x][p.y]) != 0)
-					return (0);
-			}
-			else if (i == 0)
-			{
-				if (ft_strchr("PC", map[p.x][p.y]) != 0)
-					return (0);
-			}
+			if (go_out_checker(i, map, p) == -1)
+				return (0);
 			p.y++;
 		}
 		p.x++;
 	}
 	return (1);
+}
+
+void	contamination_process(int b, char **map, int	*end_counter, pos	p)
+{
+	if (map[p.y][p.x] == 'P')
+		map[p.y][p.x] = 'Z';
+	if (map[p.y][p.x] == 'Z')
+	{
+		if (b == 1)
+			contamination(map, p, end_counter, "C0E");
+		else
+			contamination(map, p, end_counter, "C0");
+	}
 }
 
 void	valid_path(map_check *check, char **map, int b)
@@ -82,15 +102,7 @@ void	valid_path(map_check *check, char **map, int b)
 			p.x = 0;
 			while (map[p.y][p.x])
 			{
-				if (map[p.y][p.x] == 'P')
-					map[p.y][p.x] = 'Z';
-				if (map[p.y][p.x] == 'Z')
-				{
-					if (b == 1)
-						contamination(map, p, &end_counter, "C0E");
-					else
-						contamination(map, p, &end_counter, "C0");
-				}
+				contamination_process(b, map, &end_counter, p);
 				p.x++;
 			}
 			p.y++;
@@ -104,20 +116,8 @@ void	valid_path(map_check *check, char **map, int b)
 		check->with_exit = -1;
 }
 
-void	valid_path_handler(map_check *check, char **map)
+void	second_handler(char	**copy1, char	**copy2, map_check *check, char **map)
 {
-	char		**copy1;
-	char		**copy2;
-	map_check	zero;
-
-	ft_bzero(&zero, sizeof(map_check));
-	copy1 = map_copy(map);
-	if (!copy1)
-	{
-		free_map(map);
-		exit(EXIT_FAILURE);
-	}
-	valid_path(check, copy1, 0);
 	copy2 = map_copy(copy1);
 	if (!copy2)
 	{
@@ -128,6 +128,24 @@ void	valid_path_handler(map_check *check, char **map)
 	free_map(copy1);
 	valid_path(check, copy2, 1);
 	free_map(copy2);
+}
+
+void	valid_path_handler(map_check *check, char **map)
+{
+	char		**copy1;
+	char		**copy2;
+	map_check	zero;
+
+	copy2 = NULL;
+	ft_bzero(&zero, sizeof(map_check));
+	copy1 = map_copy(map);
+	if (!copy1)
+	{
+		free_map(map);
+		exit(EXIT_FAILURE);
+	}
+	valid_path(check, copy1, 0);
+	second_handler(copy1, copy2, check, map);
 	if (ft_memcmp(check, &zero, sizeof(map_check)) != 0)
 	{
 		free_map(map);
