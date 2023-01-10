@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 13:10:48 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:23:55 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ int	exit_cross(all_data *data)
 	return (0);
 }
 
-// static functions
-// malloc free
-// if malloc returns NULL
-
-
-
-//initialize data with 0
 void	data_intialisation(all_data *data, key *keys, enemy *enemies,
 		image_info *img)
 {
@@ -77,6 +70,9 @@ int	main(int av, char **ac)
 	return (0);
 }
 
+// static functions
+// malloc free
+// if malloc returns NULL
 	// player is on top of coin
 	// return value of mlx functions
 	

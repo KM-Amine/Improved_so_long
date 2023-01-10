@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:30:42 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 12:58:05 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:20:24 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	player_layer(char *set, void **image_set, all_data *data)
 	int		index;
 
 	copy = map_copy(data->map.map);
-	if (!copy)
-		total_clean(data);
+//	if (!copy)
+		////total_clean(data);
 	i = 0;
 	while (copy[i])
 	{
@@ -48,5 +48,5 @@ void	player_layer(char *set, void **image_set, all_data *data)
 		}
 		i++;
 	}
-	free_map(copy);
+	//free_map(copy);
 }
