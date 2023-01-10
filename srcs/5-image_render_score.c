@@ -6,27 +6,37 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:14:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 18:36:16 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:57:53 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-////--------------------
-char	*score_creator(int i, char c)
+
+char	*score_creator(int i, char c, all_data *data)
 {
 	char	*tmp;
 	char	*str;
 
 	tmp = ft_itoa(i);
+	str = NULL;
 	if (c == 'M')
 		str = ft_strjoin("Number of movements: ", tmp);
+		if (!str)
+		{
+			free(tmp);
+			total_clean(data);
+		}
 	else
 		str = ft_strjoin("Number of coins left: ", tmp);
+		if (!str)
+		{
+			free(tmp);
+			total_clean(data);
+		}
 	free(tmp);
 	return (str);
 }
-////--------------------
 
 void	score_printer(int i, int j, all_data *data)
 {
@@ -36,16 +46,16 @@ void	score_printer(int i, int j, all_data *data)
 
 	mouvement = data->text.mouvement;
 	coins = data->text.coins;
-	mvstr = score_creator(mouvement, 'M');
+	mvstr = score_creator(mouvement, 'M',data);
 	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, SPRITE_X / 2, (j
 			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
 	free(mvstr);
-	mvstr = score_creator(coins, 'C');
+	mvstr = score_creator(coins, 'C',data);
 	mlx_string_put(data->mlx.mlx, data->mlx.mlx_win, i * SPRITE_X / 2, (j
 			* SPRITE_Y) + SPRITE_Y / 3, 65535, mvstr);
 	free(mvstr);
 }
-////--------------------
+
 
 void	score_layer(void **image_set, all_data *data)
 {

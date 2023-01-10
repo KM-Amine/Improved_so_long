@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:20:59 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/08 18:48:37 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:54:14 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	set_map_data(char **map, char c, char *set)
 	}
 }
 
-////--------------------
 void	zero_printer(all_data *data, void **image_set)
 {
 	char	**copy;
@@ -39,6 +38,8 @@ void	zero_printer(all_data *data, void **image_set)
 	int		j;
 
 	copy = map_copy(data->map.map);
+	if (!copy)
+		total_clean(data);
 	set_map_data(copy, '0', "CP1EGT");
 	i = 0;
 	while (copy[i])
@@ -54,7 +55,7 @@ void	zero_printer(all_data *data, void **image_set)
 	}
 	free_map(copy);
 }
-////--------------------
+
 void	wall_exit_printer(char *set, all_data *data, void **image_set)
 {
 	int		i;
@@ -63,6 +64,8 @@ void	wall_exit_printer(char *set, all_data *data, void **image_set)
 	int		index;
 
 	copy = map_copy(data->map.map);
+	if (!copy)
+		total_clean(data);
 	i = 0;
 	while (copy[i])
 	{
@@ -81,7 +84,7 @@ void	wall_exit_printer(char *set, all_data *data, void **image_set)
 	}
 	free_map(copy);
 }
-////--------------------
+
 
 void	backgroud_layer(char *set, void **image_set, all_data *data)
 {

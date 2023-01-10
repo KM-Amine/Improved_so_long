@@ -6,7 +6,7 @@
 /*   By: mkhellou < mkhellou@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:23:10 by mkhellou          #+#    #+#             */
-/*   Updated: 2023/01/10 12:08:18 by mkhellou         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:59:58 by mkhellou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	render_frame(all_data *data)
 	static int	i;
 	static void	*image_set[50];
 
-	//exit here
 	if (i % 1 == 0)
 	{
 		map_modifier(data, i);
@@ -25,7 +24,6 @@ int	render_frame(all_data *data)
 		simple_map_printer(image_set, data);
 	}
 	i++;
-	total_clean(data);
 	return (0);
 }
 
@@ -62,36 +60,23 @@ int	main(int av, char **ac)
 	enemy		enemies[20];
 	image_info	img[10];
 
-	//check for malloc !NULL and free before exit
 	data.map = map_checker(av, ac);
-	//------------
 	data_intialisation(&data, keys, enemies, img);
 	enemy_spawner(&data.map);
 	enemy_collector(&data);
-	//check for malloc !NULL and free before exit
 	data.mlx.mlx = mlx_init();
-	//------------
-	//check for malloc !NULL and free before exit
 	data.mlx.mlx_win = mlx_new_window(data.mlx.mlx, data.map.resolution.x
 			* SPRITE_X, (data.map.resolution.y + 1) * SPRITE_Y, "so_long");
-	//------------
-	//check for malloc !NULL and free before exit
 	images_generator(&data);
-	//------------
-
 	mlx_hook(data.mlx.mlx_win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.mlx.mlx_win, KeyRelease, KeyReleaseMask, key_release, &data);
 	mlx_hook(data.mlx.mlx_win, DestroyNotify, NoEventMask, exit_cross, &data);
-	//exit free //check for malloc !NULL and free before exit
-	
 	mlx_loop_hook(data.mlx.mlx, render_frame, &data);
-	//check for malloc !NULL and free before exit
-	
 	mlx_loop(data.mlx.mlx);
-	// player is on top of coin
-	// return value of mlx functions
-	
-	// exiting
 	total_clean(&data);
 	return (0);
 }
+
+	// player is on top of coin
+	// return value of mlx functions
+	
